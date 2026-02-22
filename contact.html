@@ -1,145 +1,193 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact Us - BYBLOS GROUP</title>
+<title>Contact - BYBLOS GROUP</title>
 
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet">
+
+<!-- phone countries library -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css">
 
 <style>
+
 body{
-margin:0;
-font-family:Arial, Helvetica, sans-serif;
-background:#111217;
-color:white;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
+    margin:0;
+    background:#0f1014;
+    font-family:'Cinzel', serif;
+    color:white;
 }
 
 .container{
-width:90%;
-max-width:600px;
-background:#16181f;
-padding:40px;
-border-radius:16px;
-box-shadow:0 0 40px rgba(255,255,255,0.08);
+    max-width:700px;
+    margin:80px auto;
+    padding:40px;
+    background:#16171c;
+    border-radius:18px;
+    box-shadow:0 0 40px rgba(255,255,255,0.08);
 }
 
 h1{
-text-align:center;
-margin-bottom:30px;
-letter-spacing:2px;
+    text-align:center;
+    margin-bottom:40px;
+    letter-spacing:2px;
 }
 
-input, textarea, select{
-width:100%;
-padding:12px;
-margin-top:10px;
-margin-bottom:20px;
-border-radius:8px;
-border:1px solid #2e323f;
-background:#0f1015;
-color:white;
-font-size:14px;
+label{
+    display:block;
+    margin-top:20px;
+    margin-bottom:6px;
+    color:#d0d0d0;
+}
+
+input, textarea{
+    width:100%;
+    padding:14px;
+    border-radius:10px;
+    border:1px solid #2b2c33;
+    background:#0f1014;
+    color:white;
+    font-size:15px;
 }
 
 textarea{
-height:130px;
-resize:none;
+    min-height:140px;
+    resize:none;
+}
+
+input:focus, textarea:focus{
+    outline:none;
+    border-color:#bfc3c9;
+    box-shadow:0 0 10px rgba(255,255,255,0.15);
 }
 
 button{
-width:100%;
-padding:14px;
-background:linear-gradient(90deg,#cfd3da,#9aa1ab);
-border:none;
-border-radius:10px;
-color:black;
-font-weight:bold;
-cursor:pointer;
-transition:0.3s;
+    width:100%;
+    margin-top:30px;
+    padding:16px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(135deg,#d9dde3,#8f96a3);
+    color:#000;
+    font-weight:bold;
+    letter-spacing:1px;
+    cursor:pointer;
+    transition:0.3s;
 }
 
 button:hover{
-transform:scale(1.03);
+    transform:translateY(-2px);
+    box-shadow:0 0 18px rgba(255,255,255,0.3);
 }
 
 .success{
-text-align:center;
-color:#7CFF9B;
-display:none;
-margin-top:15px;
+    text-align:center;
+    margin-top:20px;
+    color:#7CFF9B;
+    display:none;
 }
 
 .error{
-text-align:center;
-color:#ff7c7c;
-display:none;
-margin-top:15px;
+    text-align:center;
+    margin-top:20px;
+    color:#ff6b6b;
+    display:none;
 }
-</style>
 
+/* phone input alignment fix */
+.iti{
+    width:100%;
+}
+
+</style>
 </head>
 
 <body>
 
 <div class="container">
+
 <h1>CONTACT US</h1>
 
 <form id="contact-form">
 
-<label>Full Name</label> <input type="text" name="from_name" pattern="[A-Za-z\s]+" required>
+<label>Full Name</label>
+<input type="text" id="name" name="from_name" required>
 
-<label>Country</label> <select name="country" required>
+<label>Phone Number</label>
+<input id="phone" type="tel" name="phone" required>
 
-<option value="">Select Country</option>
-<option>UAE</option>
-<option>Saudi Arabia</option>
-<option>Lebanon</option>
-<option>Qatar</option>
-<option>Kuwait</option>
-<option>Bahrain</option>
-<option>Turkey</option>
-<option>Other</option>
-</select>
-
-<label>Phone Number</label> <input type="tel" name="phone" pattern="[0-9]+" required>
-
-<label>Email</label> <input type="email" name="reply_to" required>
+<label>Email Address</label>
+<input type="email" id="email" name="reply_to" required>
 
 <label>Your Message</label>
-
 <textarea name="message" required></textarea>
 
 <button type="submit">SEND MESSAGE</button>
 
-<div class="success">Message sent successfully</div>
-<div class="error">Error sending message</div>
+<div class="success" id="successMsg">Message sent successfully ✔</div>
+<div class="error" id="errorMsg">Failed to send message ✖</div>
 
 </form>
 </div>
 
+<!-- emailjs -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<!-- phone countries -->
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js"></script>
+
 <script>
+
+/* EmailJS init */
 (function(){
 emailjs.init("9HpRmREmXpiS-HG4W");
 })();
 
-document.getElementById("contact-form").addEventListener("submit", function(event){
-event.preventDefault();
+/* phone countries system */
+const phoneInput = document.querySelector("#phone");
+
+const iti = window.intlTelInput(phoneInput, {
+    initialCountry: "auto",
+    geoIpLookup: function(success, failure) {
+        fetch("https://ipapi.co/json")
+        .then(res => res.json())
+        .then(data => success(data.country_code))
+        .catch(() => success("AE"));
+    },
+    separateDialCode: true,
+    nationalMode: false,
+    autoPlaceholder: "aggressive",
+    utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js"
+});
+
+/* form send */
+document.getElementById("contact-form").addEventListener("submit", function(e){
+e.preventDefault();
+
+/* name letters only */
+const name = document.getElementById("name");
+if(!/^[A-Za-z\s]+$/.test(name.value)){
+alert("Name must contain letters only");
+return;
+}
+
+/* get full international number */
+const fullNumber = iti.getNumber();
+phoneInput.value = fullNumber;
 
 emailjs.sendForm("service_nmsxahk","template_w5zf4rc",this)
 .then(function(){
-document.querySelector(".success").style.display="block";
-document.querySelector(".error").style.display="none";
+document.getElementById("successMsg").style.display="block";
+document.getElementById("errorMsg").style.display="none";
 document.getElementById("contact-form").reset();
 }, function(){
-document.querySelector(".error").style.display="block";
+document.getElementById("errorMsg").style.display="block";
 });
+
 });
+
 </script>
 
 </body>
