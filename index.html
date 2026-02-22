@@ -27,7 +27,7 @@ background:radial-gradient(circle at center,#111 0%,#000 75%);
 overflow:hidden;
 }
 
-/* الطبقة المزخرفة */
+/* النقش المائل */
 .hero::before{
 content:"";
 position:absolute;
@@ -38,14 +38,21 @@ height:100%;
 background:
 repeating-linear-gradient(
 135deg,
-rgba(255,255,255,0.06) 0px,
-rgba(255,255,255,0.06) 2px,
+rgba(255,255,255,0.07) 0px,
+rgba(255,255,255,0.07) 2px,
 transparent 2px,
-transparent 40px
+transparent 42px
 );
-opacity:0.25;
 pointer-events:none;
+
+```
+/* التلاشي للأسفل */
+mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 75%);
+-webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 75%);
+```
+
 }
+
 
 
 h1{
