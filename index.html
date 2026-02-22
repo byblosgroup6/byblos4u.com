@@ -11,135 +11,129 @@
 <style>
 
 /* ===== BODY ===== */
-
 body{
     margin:0;
     font-family:'Cinzel', serif;
-    background:linear-gradient(#16161b,#0f0f13);
+    background:#111217;
     color:white;
+    padding-top:72px;
 }
 
 /* ===== NAVBAR ===== */
-
 .navbar{
     position:fixed;
     top:0;
+    left:0;
     width:100%;
-    height:70px;
+    height:72px;
     display:flex;
     align-items:center;
-    justify-content:space-between;
-    padding:0 60px;
-    background:rgba(15,15,20,0.65);
-    backdrop-filter:blur(10px);
+    justify-content:center;
+    background:rgba(12,13,16,0.85);
+    backdrop-filter:blur(12px);
     border-bottom:1px solid rgba(255,255,255,0.08);
     z-index:999;
 }
 
+.nav-left{
+    position:absolute;
+    left:25px;
+}
+
 .nav-logo{
-    font-size:22px;
-    font-weight:700;
-    letter-spacing:3px;
+    height:42px;
+    opacity:0.9;
+    transition:0.3s;
+}
+.nav-logo:hover{
+    opacity:1;
+    transform:scale(1.05);
 }
 
-.nav-menu{
+.nav-center{
     display:flex;
-    gap:35px;
+    gap:40px;
+    align-items:center;
 }
 
-.nav-item{
-    position:relative;
-}
-
-.nav-item a{
+.nav-center a, .dropdown span{
     text-decoration:none;
-    color:#ddd;
-    font-size:14px;
+    color:#e5e5e5;
+    font-size:15px;
     letter-spacing:1px;
-    transition:.3s;
+    cursor:pointer;
+    transition:0.25s;
 }
-
-.nav-item a:hover{
+.nav-center a:hover, .dropdown span:hover{
     color:white;
 }
 
-/* Dropdown */
+/* dropdown */
+.dropdown{ position:relative; }
 
-.dropdown{
+.dropdown-content{
     position:absolute;
-    top:40px;
-    left:0;
-    background:#1b1b22;
-    border:1px solid #2a2a33;
-    border-radius:10px;
-    padding:15px 0;
+    top:35px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#15161b;
+    padding:12px 0;
+    border-radius:12px;
     min-width:220px;
     display:none;
-    box-shadow:0 10px 40px rgba(0,0,0,0.7);
+    box-shadow:0 10px 30px rgba(0,0,0,0.5);
 }
 
-.dropdown a{
+.dropdown-content a{
     display:block;
     padding:10px 20px;
-    color:#ccc;
+    font-size:14px;
 }
 
-.dropdown a:hover{
-    background:#24242c;
-    color:white;
+.dropdown-content a:hover{
+    background:#1f2026;
 }
 
-.nav-item:hover .dropdown{
+.dropdown:hover .dropdown-content{
     display:block;
 }
 
 /* ===== HERO ===== */
-
 .hero{
-    margin-top:70px;
     position:relative;
-    height:75vh;
+    height:70vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    background:radial-gradient(circle at center,#202028 0%,#0f0f13 70%);
+    background:radial-gradient(circle at center,#1c1d22 0%,#111217 70%);
+    overflow:hidden;
 }
 
-.logo{
-    text-align:center;
-    position:relative;
-    padding-bottom:70px;
+.hero::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:repeating-linear-gradient(
+        135deg,
+        rgba(255,255,255,0.12) 0px,
+        rgba(255,255,255,0.12) 2px,
+        transparent 2px,
+        transparent 28px
+    );
+    mask-image:linear-gradient(to bottom,rgba(0,0,0,1)0%,rgba(0,0,0,0)75%);
+    -webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,1)0%,rgba(0,0,0,0)75%);
 }
 
 .logo img{
     width:520px;
     max-width:90%;
-    filter:drop-shadow(0 0 22px rgba(255,255,255,0.35));
+    filter: drop-shadow(0 0 22px rgba(255,255,255,0.35));
 }
 
-/* Reflection */
-
-.logo::after{
-    content:"";
-    position:absolute;
-    top:calc(100% - 5px);
-    left:50%;
-    transform:translateX(-50%) scaleY(-1);
-    width:520px;
-    max-width:90%;
-    height:220px;
-    background:url("logo.png") no-repeat center;
-    background-size:contain;
-    opacity:0.28;
-    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
-    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
-    filter:blur(1.4px);
-}
-
-/* ===== COMPANIES ===== */
-
+/* ===== CARDS ===== */
 .companies{
-    padding:90px 20px;
+    padding:80px 20px;
 }
 
 .row{
@@ -153,22 +147,22 @@ body{
 .card{
     width:230px;
     height:120px;
-    background:linear-gradient(145deg,#1d1d24,#14141a);
-    border:1px solid #303038;
-    border-radius:16px;
+    background:#16171c;
+    border:1px solid #2c2c2c;
+    border-radius:14px;
     display:flex;
     align-items:center;
     justify-content:center;
     text-align:center;
-    transition:.35s;
+    transition:0.35s;
     text-decoration:none;
     color:white;
 }
 
 .card:hover{
-    transform:translateY(-12px) scale(1.05);
-    border-color:#d6d6d6;
-    box-shadow:0 15px 40px rgba(0,0,0,0.9),0 0 35px rgba(255,255,255,0.18);
+    transform:translateY(-10px) scale(1.05);
+    border-color:#d0d0d0;
+    box-shadow:0 0 30px rgba(255,255,255,0.22);
 }
 
 .card h3{
@@ -176,8 +170,6 @@ body{
     font-weight:500;
     letter-spacing:1px;
 }
-
-/* FOOTER */
 
 footer{
     text-align:center;
@@ -192,85 +184,55 @@ footer{
 
 <body>
 
-<!-- NAVBAR -->
+<header class="navbar">
 
-<div class="navbar">
-    <div class="nav-logo">BYBLOS GROUP</div>
-
-```
-<div class="nav-menu">
-
-    <div class="nav-item"><a href="#">Home</a></div>
-
-    <div class="nav-item">
-        <a href="#">About Us</a>
-        <div class="dropdown">
-            <a href="#">Who We Are</a>
-            <a href="#">Vision & Mission</a>
-            <a href="#">Chairman Message</a>
-            <a href="#">Our Values</a>
-        </div>
-    </div>
-
-    <div class="nav-item">
-        <a href="#">Our Companies</a>
-        <div class="dropdown">
-            <a href="#">Byblos 4 Medicine</a>
-            <a href="#">Byblos 4 Real Estate</a>
-            <a href="https://astoriahosp.com/" target="_blank">Astoria Hospitality</a>
-            <a href="#">Byblos 4 Media Prod</a>
-            <a href="#">Byblos 4 Advertising</a>
-            <a href="#">Byblos 4 Exhibitions</a>
-            <a href="#">Byblos 4 Event</a>
-        </div>
-    </div>
-
-    <div class="nav-item">
-        <a href="#">Locations</a>
-        <div class="dropdown">
-            <a href="#">Head Office</a>
-            <a href="#">Branches</a>
-            <a href="#">International Offices</a>
-        </div>
-    </div>
-
-    <div class="nav-item">
-        <a href="#">Media Center</a>
-        <div class="dropdown">
-            <a href="#">News</a>
-            <a href="#">Gallery</a>
-            <a href="#">Press Releases</a>
-        </div>
-    </div>
-
-    <div class="nav-item"><a href="contact.html">Contact</a></div>
-
-</div>
-```
-
+<div class="nav-left">
+<a href="index.html">
+<img src="b.png" class="nav-logo">
+</a>
 </div>
 
-<!-- HERO -->
+<nav class="nav-center">
+<a href="index.html">Home</a>
+
+<div class="dropdown">
+<span>Companies</span>
+<div class="dropdown-content">
+<a href="#">Byblos 4 Medicine</a>
+<a href="#">Byblos 4 Real Estate</a>
+<a href="https://astoriahosp.com/" target="_blank">Byblos 4 Hospitality</a>
+<a href="#">Byblos 4 Media Prod</a>
+<a href="#">Byblos 4 Advertising</a>
+<a href="#">Byblos 4 Exhibitions</a>
+<a href="#">Byblos 4 Event</a>
+</div>
+</div>
+
+<a href="contact.html">Contact</a>
+
+</nav>
+
+</header>
 
 <section class="hero">
-    <div class="logo">
-        <img src="logo.png" alt="BYBLOS GROUP LOGO">
-    </div>
+<div class="logo">
+<img src="logo.png">
+</div>
 </section>
 
 <section class="companies">
 
 <div class="row">
-    <a class="card" href="#"><h3>Byblos 4 Medicine</h3></a>
-    <a class="card" href="#"><h3>Byblos 4 Real Estate</h3></a>
-    <a class="card" href="https://astoriahosp.com/" target="_blank"><h3>Astoria Hospitality</h3></a>
+<a class="card" href="#"><h3>Byblos 4 Medicine</h3></a>
+<a class="card" href="#"><h3>Byblos 4 Real Estate</h3></a>
+<a class="card" href="https://astoriahosp.com/" target="_blank"><h3>Byblos 4 Hospitality</h3></a>
 </div>
 
 <div class="row">
-    <a class="card" href="#"><h3>Byblos 4 Media Prod</h3></a>
-    <a class="card" href="#"><h3>Byblos 4 Advertising</h3></a>
-    <a class="card" href="#"><h3>Byblos 4 Exhibitions</h3></a>
-    <a class="card" href="#"><h3>Byblos 4 Event</h3></a>
+<a class="card" href="#"><h3>Byblos 4 Media Prod</h3></a>
+<a class="card" href="#"><h3>Byblos 4 Advertising</h3></a>
+<a class="card" href="#"><h3>Byblos 4 Exhibitions</h3></a>
+<a class="card" href="#"><h3>Byblos 4 Event</h3></a>
 </div>
 
 </section>
