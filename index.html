@@ -6,117 +6,150 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BYBLOS GROUP</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
-
 <style>
+
+/* ===== إعدادات عامة ===== */
+
 body{
     margin:0;
-    background:#0a0a0a;
+    font-family:Segoe UI, Tahoma, sans-serif;
+    background:#000;
     color:white;
-    font-family:'Montserrat',sans-serif;
 }
+
+/* ===== القسم العلوي ===== */
 
 .hero{
-position:relative;
-height:65vh;
-display:flex;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-background:radial-gradient(circle at center,#111 0%,#000 75%);
-overflow:hidden;
+    position:relative;
+    height:65vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    background:radial-gradient(circle at center,#111 0%,#000 75%);
+    overflow:hidden;
 }
 
-/* النقش المائل */
+/* النقش الفضي المائل مع التلاشي */
 .hero::before{
-content:"";
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:
-repeating-linear-gradient(
-135deg,
-rgba(255,255,255,0.07) 0px,
-rgba(255,255,255,0.07) 2px,
-transparent 2px,
-transparent 42px
-);
-pointer-events:none;
-
-```
-/* التلاشي للأسفل */
-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 75%);
--webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 75%);
-```
-
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:
+    repeating-linear-gradient(
+        135deg,
+        rgba(255,255,255,0.07) 0px,
+        rgba(255,255,255,0.07) 2px,
+        transparent 2px,
+        transparent 42px
+    );
+    pointer-events:none;
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 75%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 75%);
 }
 
+/* ===== شعار BYBLOS ===== */
 
+.logo{
+    text-align:center;
+    position:relative;
+    z-index:2;
+}
 
-h1{
-    font-family:'Playfair Display',serif;
+.byblos{
     font-size:72px;
-    letter-spacing:14px;
-    color:#d4af37;
-    margin:0;
+    font-weight:800;
+    letter-spacing:10px;
+    font-family:'Segoe UI', Tahoma, sans-serif;
+    background:linear-gradient(
+        90deg,
+        #bfbfbf 0%,
+        #ffffff 25%,
+        #9e9e9e 50%,
+        #ffffff 75%,
+        #bfbfbf 100%
+    );
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    position:relative;
 }
 
-.tagline{
-    margin-top:15px;
-    color:#b8b8b8;
-    letter-spacing:5px;
+.group{
+    display:block;
+    margin-top:8px;
+    font-size:32px;
+    font-family:"Brush Script MT", cursive;
+    color:#dcdcdc;
+    letter-spacing:3px;
 }
 
-.divider{
-    width:90px;
-    height:2px;
-    background:#d4af37;
-    margin:40px auto;
+/* لمعان الشعار */
+.byblos::after{
+    content:'';
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:50%;
+    height:100%;
+    background:linear-gradient(120deg,transparent,rgba(255,255,255,0.8),transparent);
+    animation:shine 4s infinite;
+}
+
+@keyframes shine{
+    0%{left:-100%;}
+    60%{left:120%;}
+    100%{left:120%;}
+}
+
+/* ===== الشركات ===== */
+
+.companies{
+    padding:70px 20px;
+    text-align:center;
 }
 
 .grid{
-    max-width:1150px;
-    margin:50px auto 90px;
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:45px;
-    padding:20px;
+    gap:30px;
+    max-width:1100px;
+    margin:auto;
 }
 
 .card{
-    border:1px solid rgba(212,175,55,0.35);
-    border-radius:20px;
-    padding:45px 20px;
-    text-align:center;
-    transition:0.35s;
+    background:#0d0d0d;
+    border:1px solid #222;
+    padding:30px;
+    border-radius:14px;
+    transition:0.3s;
     text-decoration:none;
     color:white;
+    position:relative;
+    overflow:hidden;
 }
 
 .card:hover{
-    transform:translateY(-14px);
-    background:rgba(212,175,55,0.06);
-    border-color:#d4af37;
+    transform:translateY(-8px) scale(1.03);
+    border-color:#aaa;
+    box-shadow:0 0 25px rgba(255,255,255,0.15);
 }
 
-.card h2{
-    font-family:'Playfair Display',serif;
-    font-weight:600;
-    letter-spacing:2px;
-    font-size:20px;
+.card h3{
     margin:0;
-    color:#d4af37;
+    font-weight:500;
+    letter-spacing:1px;
 }
 
-.footer{
+footer{
     text-align:center;
-    padding:45px 0;
+    padding:25px;
     color:#777;
-    border-top:1px solid rgba(255,255,255,0.05);
-    letter-spacing:2px;
+    border-top:1px solid #111;
 }
+
 </style>
 
 </head>
@@ -124,20 +157,52 @@ h1{
 <body>
 
 <section class="hero">
-<h1>BYBLOS GROUP</h1>
-<div class="tagline">Corporate Holding Portal</div>
-<div class="divider"></div>
+    <div class="logo">
+        <span class="byblos">BYBLOS</span>
+        <span class="group">Group</span>
+    </div>
 </section>
 
-<section class="grid">
+<section class="companies">
+    <div class="grid">
 
-<a class="card" href="#"><h2>Byblos 4 Medicine</h2></a> <a class="card" href="#"><h2>Byblos 4 Real Estate</h2></a> <a class="card" href="#"><h2>Byblos 4 Hospitality</h2></a> <a class="card" href="#"><h2>Byblos 4 Media Prod</h2></a> <a class="card" href="#"><h2>Byblos 4 Advertising</h2></a> <a class="card" href="#"><h2>Byblos 4 Exhibitions</h2></a> <a class="card" href="#"><h2>Byblos 4 Event</h2></a>
+```
+    <a class="card" href="#">
+        <h3>Byblos 4 Medicine</h3>
+    </a>
 
-</section>
+    <a class="card" href="#">
+        <h3>Byblos 4 Real Estate</h3>
+    </a>
 
-<div class="footer">
-© 2026 BYBLOS GROUP — All Rights Reserved
+    <a class="card" href="#">
+        <h3>Byblos 4 Hospitality</h3>
+    </a>
+
+    <a class="card" href="#">
+        <h3>Byblos 4 Media Prod</h3>
+    </a>
+
+    <a class="card" href="#">
+        <h3>Byblos 4 Advetising</h3>
+    </a>
+
+    <a class="card" href="#">
+        <h3>Byblos 4 Exhibitions</h3>
+    </a>
+
+    <a class="card" href="#">
+        <h3>Byblos 4 Event</h3>
+    </a>
+
 </div>
+```
+
+</section>
+
+<footer>
+© 2026 BYBLOS GROUP — All Rights Reserved
+</footer>
 
 </body>
 </html>
