@@ -29,7 +29,7 @@ body{
     display:flex;
     align-items:center;
     justify-content:center;
-    background:rgba(12,13,16,0.85);
+    background:rgba(12,13,16,0.88);
     backdrop-filter:blur(12px);
     border-bottom:1px solid rgba(255,255,255,0.08);
     z-index:999;
@@ -52,7 +52,7 @@ body{
 
 .nav-center{
     display:flex;
-    gap:40px;
+    gap:42px;
     align-items:center;
 }
 
@@ -73,20 +73,20 @@ body{
 
 .dropdown-content{
     position:absolute;
-    top:35px;
+    top:36px;
     left:50%;
     transform:translateX(-50%);
     background:#15161b;
     padding:12px 0;
     border-radius:12px;
-    min-width:220px;
+    min-width:240px;
     display:none;
-    box-shadow:0 10px 30px rgba(0,0,0,0.5);
+    box-shadow:0 10px 35px rgba(0,0,0,0.55);
 }
 
 .dropdown-content a{
     display:block;
-    padding:10px 20px;
+    padding:11px 22px;
     font-size:14px;
 }
 
@@ -109,6 +109,7 @@ body{
     overflow:hidden;
 }
 
+/* silver pattern */
 .hero::before{
     content:"";
     position:absolute;
@@ -116,8 +117,8 @@ body{
     height:100%;
     background:repeating-linear-gradient(
         135deg,
-        rgba(255,255,255,0.12) 0px,
-        rgba(255,255,255,0.12) 2px,
+        rgba(255,255,255,0.13) 0px,
+        rgba(255,255,255,0.13) 2px,
         transparent 2px,
         transparent 28px
     );
@@ -128,6 +129,7 @@ body{
 .logo img{
     width:520px;
     max-width:90%;
+    margin-top:40px;
     filter: drop-shadow(0 0 22px rgba(255,255,255,0.35));
 }
 
@@ -193,10 +195,11 @@ footer{
 </div>
 
 <nav class="nav-center">
-<a href="index.html">Home</a>
+
+<a href="index.html">Home</a> <a href="about.html">About Us</a>
 
 <div class="dropdown">
-<span>Companies</span>
+<span>Our Companies</span>
 <div class="dropdown-content">
 <a href="#">Byblos 4 Medicine</a>
 <a href="#">Byblos 4 Real Estate</a>
@@ -208,7 +211,7 @@ footer{
 </div>
 </div>
 
-<a href="contact.html">Contact</a>
+<a href="locations.html">Locations</a> <a href="contact.html">Contact</a>
 
 </nav>
 
@@ -216,7 +219,7 @@ footer{
 
 <section class="hero">
 <div class="logo">
-<img src="logo.png">
+<img src="logo.png" alt="BYBLOS GROUP">
 </div>
 </section>
 
