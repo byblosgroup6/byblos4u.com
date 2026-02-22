@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BYBLOS GROUP</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    background:#0a0a0a;
+    color:white;
+    font-family: 'Montserrat', sans-serif;
+}
+.hero{
+    height:65vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    background: radial-gradient(circle at center,#111 0%,#000 75%);
+}
+h1{
+    font-family:'Playfair Display',serif;
+    font-size:72px;
+    letter-spacing:14px;
+    color:#d4af37;
+    margin:0;
+}
+.tagline{
+    margin-top:15px;
+    color:#b8b8b8;
+    letter-spacing:5px;
+}
+.divider{
+    width:90px;
+    height:2px;
+    background:#d4af37;
+    margin:40px auto;
+}
+.grid{
+    max-width:1150px;
+    margin:50px auto 90px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:45px;
+    padding:20px;
+}
+.card{
+    border:1px solid rgba(212,175,55,0.35);
+    border-radius:20px;
+    padding:45px 20px;
+    text-align:center;
+    transition:0.35s;
+}
+.card:hover{
+    transform:translateY(-14px);
+    background:rgba(212,175,55,0.06);
+    border-color:#d4af37;
+}
+.card img{
+    width:130px;
+    height:85px;
+    object-fit:contain;
+}
+.footer{
+    text-align:center;
+    padding:45px 0;
+    color:#777;
+    border-top:1px solid rgba(255,255,255,0.05);
+    letter-spacing:2px;
+}
+</style>
+
+</head>
+
+<body>
+
+<section class="hero">
+<h1>BYBLOS GROUP</h1>
+<div class="tagline">Corporate Holding Portal</div>
+<div class="divider"></div>
+</section>
+
+<section class="grid">
+
+<a class="card" href="#"><img src="logo1.png"></a> <a class="card" href="#"><img src="logo2.png"></a> <a class="card" href="#"><img src="logo3.png"></a> <a class="card" href="#"><img src="logo4.png"></a> <a class="card" href="#"><img src="logo5.png"></a> <a class="card" href="#"><img src="logo6.png"></a> <a class="card" href="#"><img src="logo7.png"></a>
+
+</section>
+
+<div class="footer">
+© 2026 BYBLOS GROUP — All Rights Reserved
+</div>
+
+</body>
+</html>
