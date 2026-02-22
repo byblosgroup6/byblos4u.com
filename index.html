@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -88,6 +87,8 @@ body{
     display:block;
     padding:11px 22px;
     font-size:14px;
+    text-decoration:none;
+    color:#e5e5e5;
 }
 
 .dropdown-content a:hover{
@@ -109,7 +110,6 @@ body{
     overflow:hidden;
 }
 
-/* silver pattern */
 .hero::before{
     content:"";
     position:absolute;
@@ -148,7 +148,7 @@ body{
 
 .card{
     width:230px;
-    height:120px;
+    height:150px;
     background:#16171c;
     border:1px solid #2c2c2c;
     border-radius:14px;
@@ -173,13 +173,7 @@ body{
     letter-spacing:1px;
 }
 
-footer{
-    text-align:center;
-    padding:30px;
-    color:#888;
-    border-top:1px solid #222;
-}
-    /* ===== Hospitality special card ===== */
+/* ===== Hospitality special card ===== */
 
 .hospitality-card{
     flex-direction:column;
@@ -212,8 +206,14 @@ footer{
     color:#cfcfcf;
 }
 
-</style>
+footer{
+    text-align:center;
+    padding:30px;
+    color:#888;
+    border-top:1px solid #222;
+}
 
+</style>
 </head>
 
 <body>
@@ -228,24 +228,15 @@ footer{
 
 <nav class="nav-center">
 
-<a href="index.html">Home</a> <a href="about.html">About Us</a>
+<a href="index.html">Home</a>
+<a href="about.html">About Us</a>
 
 <div class="dropdown">
 <span>Our Companies</span>
 <div class="dropdown-content">
 <a href="#">Byblos 4 Medicine</a>
 <a href="#">Byblos 4 Real Estate</a>
-<a class="card hospitality-card" href="https://astoriahosp.com/" target="_blank">
-
-<div class="card-content">
-<h3>Byblos 4 Hospitality</h3>
-
-<img src="astoriahosp.png" class="astoria-logo">
-
-<div class="astoria-text">ASTORIA HOSPITALITY</div>
-</div>
-
-</a>
+<a href="https://astoriahosp.com/" target="_blank">Byblos 4 Hospitality</a>
 <a href="#">Byblos 4 Media Prod</a>
 <a href="#">Byblos 4 Advertising</a>
 <a href="#">Byblos 4 Exhibitions</a>
@@ -253,10 +244,10 @@ footer{
 </div>
 </div>
 
-<a href="locations.html">Locations</a> <a href="contact.html">Contact</a>
+<a href="locations.html">Locations</a>
+<a href="contact.html">Contact</a>
 
 </nav>
-
 </header>
 
 <section class="hero">
@@ -270,7 +261,15 @@ footer{
 <div class="row">
 <a class="card" href="#"><h3>Byblos 4 Medicine</h3></a>
 <a class="card" href="#"><h3>Byblos 4 Real Estate</h3></a>
-<a class="card" href="https://astoriahosp.com/" target="_blank"><h3>Byblos 4 Hospitality</h3></a>
+
+<a class="card hospitality-card" href="https://astoriahosp.com/" target="_blank">
+<div class="card-content">
+<h3>Byblos 4 Hospitality</h3>
+<img src="astoriahosp.png" class="astoria-logo">
+<div class="astoria-text">ASTORIA HOSPITALITY</div>
+</div>
+</a>
+
 </div>
 
 <div class="row">
