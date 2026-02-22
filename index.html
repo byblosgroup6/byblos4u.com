@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -87,12 +88,12 @@ body{
     display:block;
     padding:11px 22px;
     font-size:14px;
-    text-decoration:none;
-    color:#e5e5e5;
+    color:#ddd;
 }
 
 .dropdown-content a:hover{
     background:#1f2026;
+    color:white;
 }
 
 .dropdown:hover .dropdown-content{
@@ -110,6 +111,7 @@ body{
     overflow:hidden;
 }
 
+/* silver pattern */
 .hero::before{
     content:"";
     position:absolute;
@@ -126,6 +128,7 @@ body{
     -webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,1)0%,rgba(0,0,0,0)75%);
 }
 
+/* main logo */
 .logo img{
     width:520px;
     max-width:90%;
@@ -148,7 +151,7 @@ body{
 
 .card{
     width:230px;
-    height:150px;
+    height:140px;
     background:#16171c;
     border:1px solid #2c2c2c;
     border-radius:14px;
@@ -168,16 +171,16 @@ body{
 }
 
 .card h3{
-    font-size:17px;
+    font-size:16px;
     font-weight:500;
     letter-spacing:1px;
 }
 
-/* ===== Hospitality special card ===== */
+/* ===== Hospitality Special Card ===== */
 
 .hospitality-card{
     flex-direction:column;
-    padding:20px;
+    padding:18px;
 }
 
 .card-content{
@@ -189,14 +192,16 @@ body{
 }
 
 .astoria-logo{
-    width:90px;
+    width:130px;
+    max-width:90%;
     height:auto;
-    opacity:0.9;
+    opacity:0.95;
+    filter: drop-shadow(0 0 10px rgba(255,255,255,0.25));
     transition:0.3s;
 }
 
 .hospitality-card:hover .astoria-logo{
-    transform:scale(1.08);
+    transform:scale(1.05);
     opacity:1;
 }
 
@@ -206,6 +211,7 @@ body{
     color:#cfcfcf;
 }
 
+/* footer */
 footer{
     text-align:center;
     padding:30px;
@@ -214,6 +220,7 @@ footer{
 }
 
 </style>
+
 </head>
 
 <body>
@@ -228,8 +235,7 @@ footer{
 
 <nav class="nav-center">
 
-<a href="index.html">Home</a>
-<a href="about.html">About Us</a>
+<a href="index.html">Home</a> <a href="about.html">About Us</a>
 
 <div class="dropdown">
 <span>Our Companies</span>
@@ -244,10 +250,10 @@ footer{
 </div>
 </div>
 
-<a href="locations.html">Locations</a>
-<a href="contact.html">Contact</a>
+<a href="locations.html">Locations</a> <a href="contact.html">Contact</a>
 
 </nav>
+
 </header>
 
 <section class="hero">
