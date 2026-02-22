@@ -10,16 +10,12 @@
 
 <style>
 
-/* ===== الخلفية العامة ===== */
-
 body{
     margin:0;
     font-family:'Cinzel', serif;
     background:#0e0e11;
     color:white;
 }
-
-/* ===== القسم العلوي ===== */
 
 .hero{
     position:relative;
@@ -31,7 +27,6 @@ body{
     overflow:hidden;
 }
 
-/* النقش الفضي الواضح */
 .hero::before{
     content:"";
     position:absolute;
@@ -39,8 +34,6 @@ body{
     left:0;
     width:100%;
     height:100%;
-
-    /* خطوط أوضح */
     background:
     repeating-linear-gradient(
         135deg,
@@ -49,13 +42,10 @@ body{
         transparent 2px,
         transparent 28px
     );
-
-    /* تلاشي للأسفل */
     mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 75%);
     -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 75%);
 }
 
-/* إضاءة علوية خفيفة */
 .hero::after{
     content:"";
     position:absolute;
@@ -66,8 +56,6 @@ body{
     background:linear-gradient(to bottom, rgba(255,255,255,0.10), transparent);
     pointer-events:none;
 }
-
-/* ===== الشعار ===== */
 
 .logo{
     text-align:center;
@@ -81,8 +69,6 @@ body{
     margin-top:40px;
     filter: drop-shadow(0 0 22px rgba(255,255,255,0.35));
 }
-
-/* ===== الشركات ===== */
 
 .companies{
     padding:80px 20px;
@@ -123,7 +109,20 @@ body{
     letter-spacing:1px;
 }
 
-/* الفوتر */
+@media (max-width:768px){
+    .hero{
+        height:55vh;
+    }
+    .logo img{
+        width:320px;
+        margin-top:20px;
+    }
+    .card{
+        width:90%;
+        max-width:320px;
+        height:90px;
+    }
+}
 
 footer{
     text-align:center;
@@ -146,7 +145,6 @@ footer{
 
 <section class="companies">
 
-```
 <div class="row">
     <a class="card" href="#"><h3>Byblos 4 Medicine</h3></a>
     <a class="card" href="#"><h3>Byblos 4 Real Estate</h3></a>
@@ -159,7 +157,6 @@ footer{
     <a class="card" href="#"><h3>Byblos 4 Exhibitions</h3></a>
     <a class="card" href="#"><h3>Byblos 4 Event</h3></a>
 </div>
-```
 
 </section>
 
