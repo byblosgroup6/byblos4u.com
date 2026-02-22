@@ -6,8 +6,6 @@
 <title>Contact - BYBLOS GROUP</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet">
-
-<!-- phone countries library -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css">
 
 <style>
@@ -19,31 +17,36 @@ body{
     color:white;
 }
 
+/* ===== form container ===== */
+
 .container{
     max-width:700px;
     margin:80px auto;
-    padding:40px;
+    padding:45px;
     background:#16171c;
     border-radius:18px;
-    box-shadow:0 0 40px rgba(255,255,255,0.08);
+    box-shadow:0 0 50px rgba(255,255,255,0.08);
 }
 
 h1{
     text-align:center;
     margin-bottom:40px;
-    letter-spacing:2px;
+    letter-spacing:3px;
 }
+
+/* ===== inputs ===== */
 
 label{
     display:block;
-    margin-top:20px;
-    margin-bottom:6px;
-    color:#d0d0d0;
+    margin-top:22px;
+    margin-bottom:8px;
+    color:#dcdcdc;
+    font-size:15px;
 }
 
 input, textarea{
     width:100%;
-    padding:14px;
+    padding:15px;
     border-radius:10px;
     border:1px solid #2b2c33;
     background:#0f1014;
@@ -58,14 +61,29 @@ textarea{
 
 input:focus, textarea:focus{
     outline:none;
-    border-color:#bfc3c9;
-    box-shadow:0 0 10px rgba(255,255,255,0.15);
+    border-color:#cfd3da;
+    box-shadow:0 0 12px rgba(255,255,255,0.2);
 }
+
+/* ===== phone style ===== */
+
+.iti{
+    width:100%;
+}
+
+.iti__selected-dial-code{
+    font-size:16px;
+    font-weight:bold;
+    color:#ffffff !important;
+    margin-left:6px;
+}
+
+/* ===== button ===== */
 
 button{
     width:100%;
     margin-top:30px;
-    padding:16px;
+    padding:17px;
     border:none;
     border-radius:12px;
     background:linear-gradient(135deg,#d9dde3,#8f96a3);
@@ -78,27 +96,20 @@ button{
 
 button:hover{
     transform:translateY(-2px);
-    box-shadow:0 0 18px rgba(255,255,255,0.3);
+    box-shadow:0 0 20px rgba(255,255,255,0.35);
 }
 
-.success{
+/* ===== messages ===== */
+
+.msg{
     text-align:center;
     margin-top:20px;
-    color:#7CFF9B;
     display:none;
+    font-size:15px;
 }
 
-.error{
-    text-align:center;
-    margin-top:20px;
-    color:#ff6b6b;
-    display:none;
-}
-
-/* phone input alignment fix */
-.iti{
-    width:100%;
-}
+.success{ color:#7CFF9B; }
+.error{ color:#ff6b6b; }
 
 </style>
 </head>
@@ -106,7 +117,6 @@ button:hover{
 <body>
 
 <div class="container">
-
 <h1>CONTACT US</h1>
 
 <form id="contact-form">
@@ -125,65 +135,82 @@ button:hover{
 
 <button type="submit">SEND MESSAGE</button>
 
-<div class="success" id="successMsg">Message sent successfully ✔</div>
-<div class="error" id="errorMsg">Failed to send message ✖</div>
+<div id="successMsg" class="msg success">Message sent successfully ✔</div>
+<div id="errorMsg" class="msg error"></div>
 
 </form>
 </div>
 
-<!-- emailjs -->
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-
-<!-- phone countries -->
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js"></script>
 
 <script>
 
-/* EmailJS init */
+/* EmailJS */
 (function(){
 emailjs.init("9HpRmREmXpiS-HG4W");
 })();
 
-/* phone countries system */
+/* phone system */
 const phoneInput = document.querySelector("#phone");
 
-const iti = window.intlTelInput(phoneInput, {
-    initialCountry: "auto",
-    geoIpLookup: function(success, failure) {
+const iti = window.intlTelInput(phoneInput,{
+    initialCountry:"auto",
+    geoIpLookup:function(success){
         fetch("https://ipapi.co/json")
-        .then(res => res.json())
-        .then(data => success(data.country_code))
-        .catch(() => success("AE"));
+        .then(res=>res.json())
+        .then(data=>success(data.country_code))
+        .catch(()=>success("AE"));
     },
-    separateDialCode: true,
-    nationalMode: false,
-    autoPlaceholder: "aggressive",
-    utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js"
+    separateDialCode:true,
+    nationalMode:false,
+    autoPlaceholder:"polite",
+    utilsScript:"https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js"
 });
 
-/* form send */
-document.getElementById("contact-form").addEventListener("submit", function(e){
+/* form validation */
+document.getElementById("contact-form").addEventListener("submit",function(e){
 e.preventDefault();
 
-/* name letters only */
-const name = document.getElementById("name");
-if(!/^[A-Za-z\s]+$/.test(name.value)){
-alert("Name must contain letters only");
+const errorBox=document.getElementById("errorMsg");
+errorBox.style.display="none";
+
+/* name validation */
+const name=document.getElementById("name").value.trim();
+if(!/^[A-Za-z\s]{3,40}$/.test(name)){
+errorBox.innerText="Please enter a valid name (letters only).";
+errorBox.style.display="block";
 return;
 }
 
-/* get full international number */
-const fullNumber = iti.getNumber();
-phoneInput.value = fullNumber;
+/* email validation */
+const email=document.getElementById("email").value.trim();
+const emailPattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+if(!emailPattern.test(email)){
+errorBox.innerText="Please enter a valid email address.";
+errorBox.style.display="block";
+return;
+}
 
+/* phone validation by country */
+if(!iti.isValidNumber()){
+errorBox.innerText="Phone number is not valid for selected country.";
+errorBox.style.display="block";
+return;
+}
+
+/* get international number */
+phoneInput.value=iti.getNumber();
+
+/* send */
 emailjs.sendForm("service_nmsxahk","template_w5zf4rc",this)
-.then(function(){
+.then(()=>{
 document.getElementById("successMsg").style.display="block";
-document.getElementById("errorMsg").style.display="none";
-document.getElementById("contact-form").reset();
-}, function(){
-document.getElementById("errorMsg").style.display="block";
+this.reset();
+},()=>{
+errorBox.innerText="Server error. Please try again later.";
+errorBox.style.display="block";
 });
 
 });
