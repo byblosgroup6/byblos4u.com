@@ -6,16 +6,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BYBLOS GROUP</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet">
 
 <style>
 
-/* ===== الخلفية العامة (أسود فاخر) ===== */
+/* ===== الخلفية العامة ===== */
 
 body{
     margin:0;
     font-family:'Cinzel', serif;
-    background:#0b0b0c;
+    background:#0f0f12; /* أسود أفتح قليلاً */
     color:white;
 }
 
@@ -27,7 +27,7 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    background:radial-gradient(circle at center,#151515 0%,#0b0b0c 70%);
+    background:radial-gradient(circle at center,#1a1a1d 0%,#0f0f12 70%);
     overflow:hidden;
 }
 
@@ -42,10 +42,10 @@ body{
     background:
     repeating-linear-gradient(
         135deg,
-        rgba(255,255,255,0.08) 0px,
-        rgba(255,255,255,0.08) 2px,
+        rgba(255,255,255,0.07) 0px,
+        rgba(255,255,255,0.07) 2px,
         transparent 2px,
-        transparent 40px
+        transparent 45px
     );
     mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 75%);
     -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 75%);
@@ -54,57 +54,14 @@ body{
 /* ===== الشعار ===== */
 
 .logo{
-    position:relative;
     text-align:center;
 }
 
-/* BYBLOS */
-
-.byblos{
-    font-size:84px;
-    font-weight:900;
-    letter-spacing:12px;
-    background:linear-gradient(
-        90deg,
-        #bfbfbf 0%,
-        #ffffff 30%,
-        #9c9c9c 50%,
-        #ffffff 70%,
-        #bfbfbf 100%
-    );
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-    position:relative;
-}
-
-/* لمعان متحرك */
-.byblos::after{
-    content:'';
-    position:absolute;
-    top:0;
-    left:-120%;
-    width:50%;
-    height:100%;
-    background:linear-gradient(120deg,transparent,rgba(255,255,255,0.9),transparent);
-    animation:shine 5s infinite;
-}
-
-@keyframes shine{
-    0%{left:-120%;}
-    60%{left:120%;}
-    100%{left:120%;}
-}
-
-/* GROUP بنفس مكان الصورة */
-
-.group{
-    position:absolute;
-    right:-120px;
-    bottom:-10px;
-    font-family:'Great Vibes', cursive;
-    font-size:46px;
-    color:#e3e3e3;
-    letter-spacing:3px;
+.logo img{
+    width:520px;
+    max-width:90%;
+    margin-top:40px;
+    filter: drop-shadow(0 0 18px rgba(255,255,255,0.25));
 }
 
 /* ===== الشركات ===== */
@@ -113,8 +70,7 @@ body{
     padding:80px 20px;
 }
 
-/* الصف الاول */
-
+/* صف */
 .row{
     display:flex;
     justify-content:center;
@@ -123,19 +79,12 @@ body{
     flex-wrap:wrap;
 }
 
-/* الصف الثاني (4 مربعات) */
-
-.row.second{
-    max-width:1000px;
-    margin:auto;
-}
-
 /* الكارد */
 
 .card{
     width:230px;
     height:120px;
-    background:#111113;
+    background:#141418;
     border:1px solid #262626;
     border-radius:14px;
     display:flex;
@@ -145,7 +94,6 @@ body{
     transition:0.35s;
     text-decoration:none;
     color:white;
-    position:relative;
 }
 
 .card:hover{
@@ -166,7 +114,7 @@ footer{
     text-align:center;
     padding:30px;
     color:#888;
-    border-top:1px solid #1a1a1a;
+    border-top:1px solid #1f1f1f;
 }
 
 </style>
@@ -177,21 +125,22 @@ footer{
 
 <section class="hero">
     <div class="logo">
-        <span class="byblos">BYBLOS</span>
-        <span class="group">Group</span>
+        <img src="logo.png" alt="BYBLOS GROUP LOGO">
     </div>
 </section>
 
 <section class="companies">
 
 ```
+<!-- الصف الأول (3 شركات) -->
 <div class="row">
     <a class="card" href="#"><h3>Byblos 4 Medicine</h3></a>
     <a class="card" href="#"><h3>Byblos 4 Real Estate</h3></a>
     <a class="card" href="#"><h3>Byblos 4 Hospitality</h3></a>
 </div>
 
-<div class="row second">
+<!-- الصف الثاني (4 شركات) -->
+<div class="row">
     <a class="card" href="#"><h3>Byblos 4 Media Prod</h3></a>
     <a class="card" href="#"><h3>Byblos 4 Advetising</h3></a>
     <a class="card" href="#"><h3>Byblos 4 Exhibitions</h3></a>
