@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -41,7 +42,7 @@ body{
     box-shadow:0 8px 25px rgba(0,0,0,0.45);
 }
 
-/* gold line */
+/* silver line instead of gold */
 .navbar::after{
     content:"";
     position:absolute;
@@ -49,8 +50,8 @@ body{
     left:0;
     width:100%;
     height:2px;
-    background:linear-gradient(90deg,#bfa76a,#f3e2a9,#bfa76a);
-    opacity:0.85;
+    background:linear-gradient(90deg,#8f96a3,#e4e7ed,#8f96a3);
+    opacity:0.9;
 }
 
 .nav-left{
@@ -82,6 +83,7 @@ body{
     position:relative;
 }
 
+/* active tab */
 .nav-center a.active{
     color:white;
 }
@@ -92,34 +94,34 @@ body{
     bottom:-8px;
     left:50%;
     transform:translateX(-50%);
-    width:24px;
+    width:26px;
     height:2px;
-    background:#e6d29b;
+    background:#cfd4dc;
     border-radius:2px;
 }
 
-.nav-center a:hover, .dropdown span:hover{
-    color:white;
-}
-
-.nav-center a:hover::after{
+/* hover underline */
+.nav-center a:hover::after,
+.dropdown:hover span::after{
     content:"";
     position:absolute;
     bottom:-8px;
     left:50%;
     transform:translateX(-50%);
-    width:18px;
+    width:20px;
     height:2px;
-    background:#bfa76a;
-    opacity:0.7;
+    background:#9aa2ad;
 }
 
-/* dropdown */
-.dropdown{ position:relative; }
+/* dropdown fixed issue */
+.dropdown{
+    position:relative;
+    padding-bottom:14px;
+}
 
 .dropdown-content{
     position:absolute;
-    top:36px;
+    top:48px;
     left:50%;
     transform:translateX(-50%);
     background:#15161b;
@@ -128,6 +130,12 @@ body{
     min-width:240px;
     display:none;
     box-shadow:0 10px 35px rgba(0,0,0,0.55);
+}
+
+/* IMPORTANT: keep open when hovering */
+.dropdown:hover .dropdown-content,
+.dropdown-content:hover{
+    display:block;
 }
 
 .dropdown-content a{
@@ -141,10 +149,6 @@ body{
 .dropdown-content a:hover{
     background:#1f2026;
     color:white;
-}
-
-.dropdown:hover .dropdown-content{
-    display:block;
 }
 
 /* ===== HERO ===== */
@@ -171,7 +175,6 @@ body{
         transparent 28px
     );
     mask-image:linear-gradient(to bottom,rgba(0,0,0,1)0%,rgba(0,0,0,0)75%);
-    -webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,1)0%,rgba(0,0,0,0)75%);
 }
 
 .logo img{
@@ -196,7 +199,7 @@ body{
 
 .card{
     width:230px;
-    height:150px;
+    height:155px;
     background:#16171c;
     border:1px solid #2c2c2c;
     border-radius:14px;
@@ -217,16 +220,10 @@ body{
 
 .card h3{
     font-size:16px;
-    font-weight:500;
     letter-spacing:1px;
 }
 
-/* Hospitality special */
-.hospitality-card{
-    flex-direction:column;
-    padding:18px;
-}
-
+/* common content */
 .card-content{
     display:flex;
     flex-direction:column;
@@ -234,18 +231,30 @@ body{
     gap:10px;
 }
 
-.astoria-logo{
-    width:130px;
-    max-width:90%;
+/* Medicine */
+.medicine-card{ flex-direction:column; padding:18px; }
+
+.gec-logo{
+    width:120px;
     height:auto;
     opacity:0.95;
     filter: drop-shadow(0 0 10px rgba(255,255,255,0.25));
-    transition:0.3s;
 }
 
-.hospitality-card:hover .astoria-logo{
-    transform:scale(1.05);
-    opacity:1;
+.gec-text{
+    font-size:13px;
+    letter-spacing:2px;
+    color:#cfcfcf;
+}
+
+/* Hospitality */
+.hospitality-card{ flex-direction:column; padding:18px; }
+
+.astoria-logo{
+    width:135px;
+    height:auto;
+    opacity:0.95;
+    filter: drop-shadow(0 0 10px rgba(255,255,255,0.25));
 }
 
 .astoria-text{
@@ -263,12 +272,12 @@ footer{
 }
 
 </style>
+
 </head>
 
 <body>
 
 <header class="navbar">
-
 <div class="nav-left">
 <a href="index.html">
 <img src="b.png" class="nav-logo">
@@ -276,7 +285,6 @@ footer{
 </div>
 
 <nav class="nav-center">
-
 <a href="index.html" class="active">Home</a>
 <a href="about.html">About Us</a>
 
@@ -293,8 +301,7 @@ footer{
 </div>
 </div>
 
-<a href="locations.html">Locations</a>
-<a href="contact.html">Contact</a>
+<a href="locations.html">Locations</a> <a href="contact.html">Contact</a>
 
 </nav>
 </header>
@@ -308,7 +315,15 @@ footer{
 <section class="companies">
 
 <div class="row">
-<a class="card" href="#"><h3>Byblos 4 Medicine</h3></a>
+
+<a class="card medicine-card" href="#">
+<div class="card-content">
+<h3>Byblos 4 Medicine</h3>
+<img src="gec.png" class="gec-logo">
+<div class="gec-text">GERMAN EYE CENTRE</div>
+</div>
+</a>
+
 <a class="card" href="#"><h3>Byblos 4 Real Estate</h3></a>
 
 <a class="card hospitality-card" href="https://astoriahosp.com/" target="_blank">
