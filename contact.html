@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us - BYBLOS GROUP</title>
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<style>
+body{
+margin:0;
+font-family:Arial, Helvetica, sans-serif;
+background:#111217;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.container{
+width:90%;
+max-width:600px;
+background:#16181f;
+padding:40px;
+border-radius:16px;
+box-shadow:0 0 40px rgba(255,255,255,0.08);
+}
+
+h1{
+text-align:center;
+margin-bottom:30px;
+letter-spacing:2px;
+}
+
+input, textarea, select{
+width:100%;
+padding:12px;
+margin-top:10px;
+margin-bottom:20px;
+border-radius:8px;
+border:1px solid #2e323f;
+background:#0f1015;
+color:white;
+font-size:14px;
+}
+
+textarea{
+height:130px;
+resize:none;
+}
+
+button{
+width:100%;
+padding:14px;
+background:linear-gradient(90deg,#cfd3da,#9aa1ab);
+border:none;
+border-radius:10px;
+color:black;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.03);
+}
+
+.success{
+text-align:center;
+color:#7CFF9B;
+display:none;
+margin-top:15px;
+}
+
+.error{
+text-align:center;
+color:#ff7c7c;
+display:none;
+margin-top:15px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+<h1>CONTACT US</h1>
+
+<form id="contact-form">
+
+<label>Full Name</label> <input type="text" name="from_name" pattern="[A-Za-z\s]+" required>
+
+<label>Country</label> <select name="country" required>
+
+<option value="">Select Country</option>
+<option>UAE</option>
+<option>Saudi Arabia</option>
+<option>Lebanon</option>
+<option>Qatar</option>
+<option>Kuwait</option>
+<option>Bahrain</option>
+<option>Turkey</option>
+<option>Other</option>
+</select>
+
+<label>Phone Number</label> <input type="tel" name="phone" pattern="[0-9]+" required>
+
+<label>Email</label> <input type="email" name="reply_to" required>
+
+<label>Your Message</label>
+
+<textarea name="message" required></textarea>
+
+<button type="submit">SEND MESSAGE</button>
+
+<div class="success">Message sent successfully</div>
+<div class="error">Error sending message</div>
+
+</form>
+</div>
+
+<script>
+(function(){
+emailjs.init("9HpRmREmXpiS-HG4W");
+})();
+
+document.getElementById("contact-form").addEventListener("submit", function(event){
+event.preventDefault();
+
+emailjs.sendForm("service_nmsxahk","template_w5zf4rc",this)
+.then(function(){
+document.querySelector(".success").style.display="block";
+document.querySelector(".error").style.display="none";
+document.getElementById("contact-form").reset();
+}, function(){
+document.querySelector(".error").style.display="block";
+});
+});
+</script>
+
+</body>
+</html>
