@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -13,11 +12,11 @@
 body{
     margin:0;
     font-family:'Cinzel', serif;
-    background:#0e0e11;
+    background:#0f0f13;
     color:white;
 }
 
-/* Hero Section */
+/* HERO */
 
 .hero{
     position:relative;
@@ -25,47 +24,34 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    background:radial-gradient(circle at center,#1d1d21 0%,#0e0e11 70%);
+    background:radial-gradient(circle at center,#1c1c22 0%,#0f0f13 70%);
     overflow:hidden;
 }
 
 .hero::before{
     content:"";
     position:absolute;
-    top:0;
-    left:0;
     width:100%;
     height:100%;
     background:
     repeating-linear-gradient(
         135deg,
-        rgba(255,255,255,0.12) 0px,
-        rgba(255,255,255,0.12) 2px,
+        rgba(255,255,255,0.08) 0px,
+        rgba(255,255,255,0.08) 2px,
         transparent 2px,
-        transparent 28px
+        transparent 30px
     );
-    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 75%);
-    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 75%);
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1), transparent 75%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1), transparent 75%);
 }
 
-.hero::after{
-    content:"";
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:60%;
-    background:linear-gradient(to bottom, rgba(255,255,255,0.10), transparent);
-    pointer-events:none;
-}
-
-/* Logo + Reflection */
+/* LOGO */
 
 .logo{
     text-align:center;
     position:relative;
     z-index:2;
-    padding-bottom:140px;
+    padding-bottom:70px;
 }
 
 .logo img{
@@ -77,29 +63,31 @@ body{
     filter: drop-shadow(0 0 22px rgba(255,255,255,0.35));
 }
 
+/* REFLECTION (CLOSE TO LOGO) */
+
 .logo::after{
     content:"";
     position:absolute;
-    top:calc(100% - 20px);
+    top:calc(100% - 5px);
     left:50%;
     transform:translateX(-50%) scaleY(-1);
     width:520px;
     max-width:90%;
-    height:250px;
+    height:220px;
     background:url("logo.png") no-repeat center;
     background-size:contain;
-    opacity:0.18;
-    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
-    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
-    filter: blur(2px);
+    opacity:0.28;
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
+    filter: blur(1.4px);
     pointer-events:none;
 }
 
-/* Companies Section */
+/* COMPANIES */
 
 .companies{
     padding:90px 20px;
-    background:linear-gradient(to bottom,#0e0e11 0%,#141419 100%);
+    background:linear-gradient(to bottom,#0f0f13 0%,#141419 100%);
     border-top:1px solid #26262b;
     box-shadow: inset 0 40px 80px rgba(255,255,255,0.04);
 }
@@ -112,7 +100,7 @@ body{
     flex-wrap:wrap;
 }
 
-/* Cards */
+/* CARDS */
 
 .card{
     width:230px;
@@ -144,7 +132,7 @@ body{
     letter-spacing:1px;
 }
 
-/* Mobile */
+/* MOBILE */
 
 @media (max-width:768px){
     .hero{
@@ -155,7 +143,7 @@ body{
         margin-top:20px;
     }
     .logo{
-        padding-bottom:80px;
+        padding-bottom:50px;
     }
     .card{
         width:90%;
@@ -164,7 +152,7 @@ body{
     }
 }
 
-/* Footer */
+/* FOOTER */
 
 footer{
     text-align:center;
@@ -174,7 +162,6 @@ footer{
 }
 
 </style>
-
 </head>
 
 <body>
@@ -195,7 +182,7 @@ footer{
 
 <div class="row">
     <a class="card" href="#"><h3>Byblos 4 Media Prod</h3></a>
-    <a class="card" href="#"><h3>Byblos 4 Advetising</h3></a>
+    <a class="card" href="#"><h3>Byblos 4 Advertising</h3></a>
     <a class="card" href="#"><h3>Byblos 4 Exhibitions</h3></a>
     <a class="card" href="#"><h3>Byblos 4 Event</h3></a>
 </div>
