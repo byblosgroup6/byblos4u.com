@@ -10,250 +10,150 @@
 
 <style>
 
-/* ================= BODY ================= */
-
+/* ===== BODY ===== */
 body{
     margin:0;
     font-family:'Cinzel', serif;
     background:#0f1116;
     color:white;
-    padding-top:80px;
+    overflow-x:hidden;
 }
 
-/* ================= NAVBAR ================= */
-
-.navbar{
+/* ===== TOP BAR ===== */
+.topbar{
+    height:75px;
+    background:#0b0c10;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 30px;
+    border-bottom:1px solid #222;
     position:fixed;
-    top:0;
-    left:0;
     width:100%;
-    height:80px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:rgba(10,11,14,0.92);
-    backdrop-filter:blur(12px);
-    border-bottom:1px solid rgba(200,200,200,0.25);
-    z-index:999;
-    transition:0.35s;
+    z-index:1000;
 }
 
-/* navbar shrink on scroll */
-.navbar.scrolled{
-    height:60px;
-    background:rgba(8,9,12,0.97);
+.logo{
+    height:45px;
 }
 
-/* logo left */
-.nav-left{
-    position:absolute;
-    left:28px;
-}
-
-.nav-logo{
-    height:42px;
-}
-
-/* center menu */
-.nav-center{
-    display:flex;
-    gap:44px;
-    align-items:center;
-}
-
-.nav-center a, .dropdown span{
-    text-decoration:none;
-    color:#dcdcdc;
-    font-size:15px;
-    letter-spacing:1px;
+.menu-btn{
+    font-size:20px;
     cursor:pointer;
-    position:relative;
+    letter-spacing:2px;
 }
 
-/* active tab underline */
-.nav-center a::after, .dropdown span::after{
-    content:"";
-    position:absolute;
+/* ===== SIDEBAR ===== */
+.sidebar{
+    position:fixed;
+    top:75px;
+    left:-260px;
+    width:260px;
+    height:100%;
+    background:#14161c;
+    padding-top:30px;
+    transition:0.4s;
+    border-right:1px solid #222;
+    z-index:999;
+}
+
+.sidebar.active{
     left:0;
-    bottom:-8px;
-    width:0%;
-    height:2px;
-    background:silver;
+}
+
+.sidebar a{
+    display:block;
+    padding:15px 25px;
+    text-decoration:none;
+    color:#ccc;
     transition:0.3s;
 }
 
-.nav-center a:hover::after,
-.dropdown:hover span::after{
-    width:100%;
+.sidebar a:hover{
+    background:#1e2128;
+    color:white;
 }
 
-/* ===== DROPDOWN FIXED ===== */
-
-.dropdown{
-    position:relative;
-    padding-bottom:18px; /* invisible hover bridge */
+/* ===== MAIN CONTENT ===== */
+.main{
+    margin-top:75px;
+    padding:60px 40px;
+    transition:margin-left 0.4s;
 }
 
-.dropdown-content{
-    position:absolute;
-    top:42px;
-    left:50%;
-    transform:translateX(-50%);
-    background:#16181f;
-    border-radius:14px;
-    min-width:260px;
-    padding:12px 0;
-    opacity:0;
-    visibility:hidden;
-    transition:opacity .25s ease, transform .25s ease;
-    box-shadow:0 15px 45px rgba(0,0,0,0.6);
+.main.shift{
+    margin-left:260px;
 }
 
-/* keep open */
-.dropdown:hover .dropdown-content{
-    opacity:1;
-    visibility:visible;
-    transform:translateX(-50%) translateY(6px);
+/* ===== SECTION TITLE ===== */
+.section-title{
+    font-size:28px;
+    margin-bottom:40px;
+    letter-spacing:2px;
 }
 
-.dropdown-content a{
-    display:block;
-    padding:12px 22px;
-    font-size:14px;
-    color:#ddd;
-}
-
-.dropdown-content a:hover{
-    background:#1f222b;
-}
-
-/* ================= HERO ================= */
-
-.hero{
-    height:70vh;
+/* ===== CARDS ===== */
+.cards{
     display:flex;
-    align-items:center;
-    justify-content:center;
-    background:radial-gradient(circle at center,#1a1c23 0%,#0f1116 70%);
-    position:relative;
-}
-
-/* silver pattern */
-.hero::before{
-    content:"";
-    position:absolute;
-    width:100%;
-    height:100%;
-    background:repeating-linear-gradient(
-        135deg,
-        rgba(255,255,255,0.14) 0px,
-        rgba(255,255,255,0.14) 2px,
-        transparent 2px,
-        transparent 30px
-    );
-    mask-image:linear-gradient(to bottom,rgba(0,0,0,1)0%,rgba(0,0,0,0)75%);
-}
-
-.logo img{
-    width:520px;
-    max-width:92%;
-    filter:drop-shadow(0 0 25px rgba(255,255,255,0.35));
-}
-
-/* ================= CARDS ================= */
-
-.companies{
-    padding:80px 20px;
-}
-
-.row{
-    display:flex;
-    justify-content:center;
-    gap:35px;
-    margin-bottom:35px;
     flex-wrap:wrap;
+    gap:35px;
 }
 
 .card{
     width:240px;
-    height:160px;
-    background:#14161c;
+    height:170px;
+    background:#151821;
     border:1px solid #2a2d35;
     border-radius:16px;
     display:flex;
+    flex-direction:column;
     align-items:center;
     justify-content:center;
     text-align:center;
     transition:0.35s;
-    text-decoration:none;
-    color:white;
 }
 
 .card:hover{
     transform:translateY(-8px) scale(1.05);
     border-color:silver;
-    box-shadow:0 0 28px rgba(255,255,255,0.25);
+    box-shadow:0 0 25px rgba(255,255,255,0.25);
 }
 
-.card-content{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:10px;
-}
-
-.card h3{
-    font-size:17px;
-    margin:0;
-}
-
-/* GEC */
-.gec-logo{
-    width:120px;
-    height:75px;
-    object-fit:contain;
-}
-
-.gec-text{
-    font-size:13px;
-    letter-spacing:2px;
-    color:#cfcfcf;
-}
-
-/* ASTORIA */
-.astoria-logo{
+.card img{
     width:110px;
     height:70px;
     object-fit:contain;
+    margin:10px 0;
 }
 
-.astoria-text{
-    font-size:13px;
+.card-title{
+    font-size:15px;
+}
+
+.card-sub{
+    font-size:12px;
     letter-spacing:2px;
     color:#cfcfcf;
 }
 
-/* TFG */
-.tfg-logo{
-    width:120px;
-    height:75px;
-    object-fit:contain;
+/* ===== CONTENT SECTIONS ===== */
+.content{
+    display:none;
+    max-width:800px;
+    line-height:1.7;
 }
 
-.tfg-text{
-    font-size:13px;
-    letter-spacing:2px;
-    color:#cfcfcf;
+.content.active{
+    display:block;
 }
 
-/* ================= FOOTER ================= */
-
+/* ===== FOOTER ===== */
 footer{
-    text-align:center;
+    margin-top:80px;
     padding:30px;
-    color:#aaa;
+    text-align:center;
+    color:#888;
     border-top:1px solid #222;
-    margin-top:60px;
 }
 
 </style>
@@ -262,95 +162,96 @@ footer{
 
 <body>
 
-<header class="navbar" id="navbar">
-
-<div class="nav-left">
-<a href="index.html">
-<img src="logo2.png" class="nav-logo">
-</a>
+<div class="topbar">
+<img src="b.png" class="logo">
+<div class="menu-btn" onclick="toggleSidebar()">MENU ☰</div>
 </div>
 
-<nav class="nav-center">
-<a href="index.html">Home</a>
-<a href="about.html">About Us</a>
+<div class="sidebar" id="sidebar">
+<a href="#" onclick="showSection('home')">Home</a>
+<a href="#" onclick="showSection('about')">About Us</a>
+<a href="#" onclick="showSection('companies')">Our Companies</a>
+<a href="#" onclick="showSection('locations')">Locations</a>
+<a href="#" onclick="showSection('contact')">Contact</a>
+</div>
 
-<div class="dropdown">
-<span>Our Companies</span>
-<div class="dropdown-content">
-<a href="#">Byblos 4 Medicine</a>
-<a href="#">Byblos 4 Real Estate</a>
-<a href="https://astoriahosp.com/" target="_blank">Byblos 4 Hospitality</a>
-<a href="#">Byblos 4 Media Prod</a>
-<a href="#">Byblos 4 Advertising</a>
-<a href="#">Byblos 4 Exhibitions</a>
-<a href="#">Byblos 4 Event</a>
+<div class="main" id="main">
+
+<!-- HOME -->
+
+<div id="home" class="content active">
+<h2 class="section-title">Welcome to BYBLOS GROUP</h2>
+<p>Byblos Group is a diversified holding company operating across multiple industries including healthcare, hospitality, real estate, media and event management.</p>
+</div>
+
+<!-- ABOUT -->
+
+<div id="about" class="content">
+<h2 class="section-title">About Us</h2>
+<p>Founded with a vision of excellence, Byblos Group brings together strategic investments and premium partnerships across key sectors.</p>
+</div>
+
+<!-- COMPANIES -->
+
+<div id="companies" class="content">
+<h2 class="section-title">Our Companies</h2>
+
+<div class="cards">
+
+<div class="card">
+<div class="card-title">Byblos 4 Medicine</div>
+<img src="gec.png">
+<div class="card-sub">GERMAN EYE CENTRE</div>
+</div>
+
+<div class="card">
+<div class="card-title">Byblos 4 Real Estate</div>
+<img src="tfg.png">
+<div class="card-sub">THE FIRST GROUP</div>
+</div>
+
+<div class="card">
+<div class="card-title">Byblos 4 Hospitality</div>
+<img src="astoriahosp.png">
+<div class="card-sub">ASTORIA HOSPITALITY</div>
+</div>
+
 </div>
 </div>
 
-<a href="locations.html">Locations</a> <a href="contact.html">Contact</a>
+<!-- LOCATIONS -->
 
-</nav>
-
-</header>
-
-<section class="hero">
-<div class="logo">
-<img src="logo2.png">
-</div>
-</section>
-
-<section class="companies">
-
-<div class="row">
-
-<a class="card" href="#">
-<div class="card-content">
-<h3>Byblos 4 Medicine</h3>
-<img src="gec.png" class="gec-logo">
-<div class="gec-text">GERMAN EYE CENTRE</div>
-</div>
-</a>
-
-<a class="card" href="#">
-<div class="card-content">
-<h3>Byblos 4 Real Estate</h3>
-<img src="tfg.png" class="tfg-logo">
-<div class="tfg-text">THE FIRST GROUP</div>
-</div>
-</a>
-
-<a class="card" href="https://astoriahosp.com/" target="_blank">
-<div class="card-content">
-<h3>Byblos 4 Hospitality</h3>
-<img src="astoriahosp.png" class="astoria-logo">
-<div class="astoria-text">ASTORIA HOSPITALITY</div>
-</div>
-</a>
-
+<div id="locations" class="content">
+<h2 class="section-title">Locations</h2>
+<p>Our operations expand regionally with strategic presence in key markets.</p>
 </div>
 
-<div class="row">
-<a class="card" href="#"><h3>Byblos 4 Media Prod</h3></a>
-<a class="card" href="#"><h3>Byblos 4 Advertising</h3></a>
-<a class="card" href="#"><h3>Byblos 4 Exhibitions</h3></a>
-<a class="card" href="#"><h3>Byblos 4 Event</h3></a>
-</div>
+<!-- CONTACT -->
 
-</section>
+<div id="contact" class="content">
+<h2 class="section-title">Contact Us</h2>
+<p>Email: info@byblosgroup.com</p>
+</div>
 
 <footer>
 © 2026 BYBLOS GROUP — All Rights Reserved
 </footer>
 
+</div>
+
 <script>
-window.addEventListener("scroll",function(){
-    const nav=document.getElementById("navbar");
-    if(window.scrollY>60){
-        nav.classList.add("scrolled");
-    }else{
-        nav.classList.remove("scrolled");
-    }
-});
+
+function toggleSidebar(){
+    document.getElementById("sidebar").classList.toggle("active");
+    document.getElementById("main").classList.toggle("shift");
+}
+
+function showSection(id){
+    const sections=document.querySelectorAll(".content");
+    sections.forEach(sec=>sec.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+}
+
 </script>
 
 </body>
