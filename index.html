@@ -5,243 +5,373 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BYBLOS GROUP</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Montserrat',sans-serif;
+
+/* ================= ROOT ================= */
+:root{
+    --silver:#cfd3da;
+    --dark:#0f1116;
+    --glass:rgba(20,22,28,0.65);
 }
 
 body{
-background:#000;
-color:white;
-overflow-x:hidden;
+    margin:0;
+    font-family:'Cinzel', serif;
+    background:var(--dark);
+    color:white;
+    overflow-x:hidden;
+    padding-top:90px;
 }
 
-/* ===== Premium Silver Lines Background ===== */
+/* ================= NAVBAR ================= */
 
-body::before{
-content:"";
-position:fixed;
-width:200%;
-height:200%;
-background:
-linear-gradient(120deg,rgba(192,192,192,0.06) 1px,transparent 1px),
-linear-gradient(60deg,rgba(192,192,192,0.04) 1px,transparent 1px);
-background-size:60px 60px;
-animation:moveLines 20s linear infinite;
-z-index:-1;
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:90px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--glass);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(255,255,255,0.1);
+    z-index:1000;
+    transition:0.4s;
+}
+
+.navbar.scrolled{
+    height:65px;
+    background:rgba(15,17,22,0.95);
+}
+
+.nav-left{
+    position:absolute;
+    left:40px;
+}
+
+.nav-logo{
+    height:44px;
+}
+
+.menu-toggle{
+    display:none;
+    position:absolute;
+    right:30px;
+    font-size:28px;
+    cursor:pointer;
+}
+
+.nav-center{
+    display:flex;
+    gap:50px;
+    align-items:center;
+}
+
+.nav-center a,
+.dropdown span{
+    text-decoration:none;
+    color:var(--silver);
+    font-size:15px;
+    letter-spacing:1px;
+    position:relative;
+    cursor:pointer;
+}
+
+.nav-center a::after,
+.dropdown span::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-8px;
+    width:0%;
+    height:2px;
+    background:linear-gradient(to right,transparent,var(--silver),transparent);
+    transition:0.3s;
+}
+
+.nav-center a:hover::after{
+    width:100%;
+}
+
+/* ================= DROPDOWN ================= */
+
+.dropdown{position:relative;}
+
+.dropdown-content{
+    position:absolute;
+    top:45px;
+    left:50%;
+    transform:translateX(-50%) translateY(10px);
+    background:#16181f;
+    border-radius:14px;
+    min-width:260px;
+    padding:12px 0;
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transition:0.3s;
+    box-shadow:0 15px 45px rgba(0,0,0,0.6);
+}
+
+.dropdown.open .dropdown-content{
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+    transform:translateX(-50%) translateY(5px);
+}
+
+.dropdown-content a{
+    display:block;
+    padding:12px 22px;
+    color:#ddd;
+    text-decoration:none;
+}
+
+.dropdown-content a:hover{
+    background:#1f222b;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    width:140%;
+    height:140%;
+    background:
+    repeating-linear-gradient(
+        135deg,
+        rgba(255,255,255,0.08) 0px,
+        rgba(255,255,255,0.08) 1px,
+        transparent 1px,
+        transparent 40px
+    );
+    animation:moveLines 30s linear infinite;
 }
 
 @keyframes moveLines{
-from{transform:translate(0,0);}
-to{transform:translate(-60px,-60px);}
+    from{transform:translateY(0);}
+    to{transform:translateY(-200px);}
 }
 
-/* ===== Premium Sticky Navbar ===== */
-
-.navbar{
-position:fixed;
-top:0;
-width:100%;
-height:90px;
-background:rgba(0,0,0,0.85);
-backdrop-filter:blur(12px);
-display:flex;
-align-items:center;
-justify-content:center;
-z-index:999;
-border-bottom:1px solid silver;
-transition:all 0.4s ease;
+.logo-wrapper{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    animation:fadeUp 1.6s ease forwards;
+    opacity:0;
 }
 
-.navbar.shrink{
-height:70px;
+@keyframes fadeUp{
+    from{opacity:0;transform:translateY(40px);}
+    to{opacity:1;transform:translateY(0);}
 }
 
-.logo{
-position:absolute;
-left:30px;
+.main-logo{
+    width:560px;
+    max-width:92%;
+    filter:drop-shadow(0 0 35px rgba(255,255,255,0.25));
 }
 
-.logo img{
-height:55px;
-transition:0.4s;
+.reflection{
+    width:560px;
+    height:140px;
+    max-width:92%;
+    background:url('logo2.png') no-repeat center;
+    background-size:contain;
+    transform:scaleY(-1);
+    opacity:0.15;
+    mask-image:linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0));
 }
 
-.nav-links{
-display:flex;
-gap:50px;
-}
-
-.nav-links a{
-text-decoration:none;
-color:white;
-font-weight:400;
-position:relative;
-padding-bottom:5px;
-transition:0.3s;
-}
-
-.nav-links a:hover{
-color:silver;
-}
-
-.nav-links a::after{
-content:"";
-position:absolute;
-bottom:0;
-left:0;
-width:0;
-height:2px;
-background:silver;
-transition:0.4s;
-}
-
-.nav-links a:hover::after{
-width:100%;
-}
-
-/* ===== Hero ===== */
-
-.hero{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-}
-
-.hero h1{
-font-size:48px;
-letter-spacing:4px;
-margin-bottom:15px;
-}
-
-.hero p{
-font-size:18px;
-color:#ccc;
-}
-
-/* ===== Companies Section ===== */
+/* ================= COMPANIES ================= */
 
 .companies{
-padding:120px 10% 80px;
+    padding:120px 20px;
 }
 
 .row{
-display:flex;
-justify-content:center;
-gap:40px;
-margin-bottom:40px;
-flex-wrap:wrap;
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    margin-bottom:40px;
+    flex-wrap:wrap;
 }
 
 .card{
-width:300px;
-height:260px;
-background:rgba(255,255,255,0.05);
-border:1px solid rgba(255,255,255,0.1);
-backdrop-filter:blur(8px);
-display:flex;
-justify-content:center;
-align-items:center;
-text-align:center;
-transition:0.4s;
-text-decoration:none;
-color:white;
+    width:260px;
+    height:170px;
+    background:rgba(20,22,28,0.8);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    transition:0.4s;
+    backdrop-filter:blur(10px);
 }
 
 .card:hover{
-transform:translateY(-10px);
-border:1px solid silver;
-box-shadow:0 0 25px rgba(192,192,192,0.4);
+    transform:translateY(-10px);
+    border-color:var(--silver);
+    box-shadow:0 0 35px rgba(255,255,255,0.15);
 }
 
-.card-content h3{
-margin-bottom:15px;
+.card-content{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    align-items:center;
 }
 
-.astoria-logo,
+.card h3{
+    font-size:18px;
+}
+
 .gec-logo,
-.tfg-logo{
-max-width:200px;
-margin-bottom:10px;
+.tfg-logo,
+.astoria-logo{
+    width:130px;
+    height:75px;
+    object-fit:contain;
 }
 
-.astoria-text,
 .gec-text,
-.tfg-text{
-font-size:14px;
-letter-spacing:2px;
-color:silver;
+.tfg-text,
+.astoria-text{
+    font-size:13px;
+    letter-spacing:2px;
+    color:var(--silver);
 }
 
-/* ===== Footer ===== */
+/* ================= FOOTER ================= */
 
 footer{
-text-align:center;
-padding:30px;
-border-top:1px solid silver;
-font-size:14px;
-color:#aaa;
+    text-align:center;
+    padding:40px;
+    border-top:1px solid rgba(255,255,255,0.1);
+    color:#aaa;
 }
 
-/* ===== Responsive ===== */
+/* ================= RESPONSIVE ================= */
 
 @media(max-width:1024px){
-.hero h1{font-size:36px;}
+    .main-logo{width:420px;}
+    .reflection{width:420px;height:110px;}
 }
 
 @media(max-width:768px){
 
-.nav-links{
-gap:20px;
+    body{padding-top:70px;}
+
+    .navbar{
+        height:70px;
+        justify-content:flex-start;
+        padding:0 20px;
+    }
+
+    .nav-left{position:static;}
+
+    .menu-toggle{display:block;color:white;}
+
+    .nav-center{
+        position:fixed;
+        top:0;
+        right:-100%;
+        width:260px;
+        height:100vh;
+        background:#111318;
+        flex-direction:column;
+        align-items:flex-start;
+        padding:100px 25px;
+        gap:28px;
+        transition:0.4s;
+    }
+
+    .nav-center.active{right:0;}
+
+    .dropdown-content{
+        position:static;
+        transform:none;
+        background:#1a1c22;
+        margin-top:10px;
+    }
+
+    .hero{height:85vh;}
+
+    .main-logo{width:300px;}
+    .reflection{width:300px;height:80px;}
+
+    .row{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .card{
+        width:90%;
+        max-width:360px;
+    }
 }
 
-.hero h1{
-font-size:28px;
-}
-
-.card{
-width:100%;
-}
-
-}
 </style>
 </head>
 
 <body>
 
-<!-- ===== Navbar ===== -->
+<header class="navbar" id="navbar">
 
-<div class="navbar" id="navbar">
-
-<div class="logo">
-<img src="b.png">
+<div class="nav-left">
+<a href="index.html">
+<img src="b.png" class="nav-logo">
+</a>
 </div>
 
-<div class="nav-links">
+<div class="menu-toggle" id="menuToggle">☰</div>
+
+<nav class="nav-center">
 <a href="#">Home</a>
-<a href="#">About</a>
-<a href="#">Companies</a>
+<a href="#">About Us</a>
+
+<div class="dropdown">
+<span id="dropdownTrigger">Our Companies ▼</span>
+<div class="dropdown-content">
+<a href="https://germaneyecentre.com" target="_blank">Byblos 4 Medicine</a>
+<a href="#">Byblos 4 Real Estate</a>
+<a href="#">Byblos 4 Hospitality</a>
+<a href="#">Byblos 4 Media Prod</a>
+<a href="#">Byblos 4 Advertising</a>
+<a href="#">Byblos 4 Exhibitions</a>
+<a href="#">Byblos 4 Event</a>
+</div>
+</div>
+
+<a href="#">Locations</a>
 <a href="#">Contact</a>
-</div>
+</nav>
 
-</div>
-
-<!-- ===== Hero ===== -->
+</header>
 
 <section class="hero">
-<h1>BYBLOS GROUP</h1>
-<p>Luxury. Vision. Excellence.</p>
+<div class="logo-wrapper">
+<img src="logo2.png" class="main-logo">
+<div class="reflection"></div>
+</div>
 </section>
-
-<!-- ===== Companies ===== -->
 
 <section class="companies">
 
@@ -255,43 +385,59 @@ width:100%;
 </div>
 </a>
 
-<a class="card" href="#">
-<div class="card-content">
+<a class="card"><div class="card-content">
 <h3>Byblos 4 Real Estate</h3>
 <img src="tfg.png" class="tfg-logo">
 <div class="tfg-text">THE FIRST GROUP</div>
-</div>
-</a>
+</div></a>
 
-<a class="card" href="https://astoriahosp.com/" target="_blank">
-<div class="card-content">
+<a class="card"><div class="card-content">
 <h3>Byblos 4 Hospitality</h3>
 <img src="astoriahosp.png" class="astoria-logo">
 <div class="astoria-text">ASTORIA HOSPITALITY</div>
-</div>
-</a>
+</div></a>
 
 </div>
 
 <div class="row">
 
-<a class="card" href="#"><div class="card-content"><h3>Byblos 4 Media Prod</h3></div></a>
-<a class="card" href="#"><div class="card-content"><h3>Byblos 4 Advertising</h3></div></a>
-<a class="card" href="#"><div class="card-content"><h3>Byblos 4 Exhibitions</h3></div></a>
-<a class="card" href="#"><div class="card-content"><h3>Byblos 4 Event</h3></div></a>
+<a class="card"><div class="card-content"><h3>Byblos 4 Media Prod</h3></div></a>
+<a class="card"><div class="card-content"><h3>Byblos 4 Advertising</h3></div></a>
+<a class="card"><div class="card-content"><h3>Byblos 4 Exhibitions</h3></div></a>
+<a class="card"><div class="card-content"><h3>Byblos 4 Event</h3></div></a>
 
 </div>
 
 </section>
 
 <footer>
-© 2026 BYBLOS GROUP — All Rights Reserved
+© 2026 BYBLOS GROUP — Ultra Premium Corporate
 </footer>
 
 <script>
+
 window.addEventListener("scroll",function(){
-document.getElementById("navbar").classList.toggle("shrink",window.scrollY>50);
+    const nav=document.getElementById("navbar");
+    if(window.scrollY>60){nav.classList.add("scrolled");}
+    else{nav.classList.remove("scrolled");}
 });
+
+const dropdown=document.querySelector(".dropdown");
+const trigger=document.getElementById("dropdownTrigger");
+trigger.addEventListener("click",e=>{
+e.stopPropagation();
+dropdown.classList.toggle("open");
+});
+document.addEventListener("click",e=>{
+if(!dropdown.contains(e.target)){dropdown.classList.remove("open");}
+});
+
+const menuToggle=document.getElementById("menuToggle");
+const navCenter=document.querySelector(".nav-center");
+menuToggle.addEventListener("click",()=>{
+navCenter.classList.toggle("active");
+});
+
 </script>
 
 </body>
