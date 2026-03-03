@@ -9,8 +9,7 @@
 
 <style>
 
-/* ================= GLOBAL ================= */
-
+/* ================= ROOT ================= */
 :root{
     --silver:#cfd3da;
     --dark:#0f1116;
@@ -41,12 +40,12 @@ body{
     backdrop-filter:blur(14px);
     border-bottom:1px solid rgba(255,255,255,0.1);
     z-index:1000;
-    transition:all .4s ease;
+    transition:0.4s;
 }
 
 .navbar.scrolled{
     height:65px;
-    background:rgba(15,17,22,0.9);
+    background:rgba(15,17,22,0.95);
 }
 
 .nav-left{
@@ -56,7 +55,6 @@ body{
 
 .nav-logo{
     height:44px;
-    transition:0.3s;
 }
 
 .menu-toggle{
@@ -101,9 +99,7 @@ body{
 
 /* ================= DROPDOWN ================= */
 
-.dropdown{
-    position:relative;
-}
+.dropdown{position:relative;}
 
 .dropdown-content{
     position:absolute;
@@ -150,7 +146,7 @@ body{
     overflow:hidden;
 }
 
-/* خطوط فضية هندسية */
+/* خطوط فضية */
 .hero::before{
     content:"";
     position:absolute;
@@ -172,7 +168,7 @@ body{
     to{transform:translateY(-200px);}
 }
 
-/* شعار */
+/* الشعار */
 .logo-wrapper{
     position:relative;
     display:flex;
@@ -183,14 +179,8 @@ body{
 }
 
 @keyframes fadeUp{
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-    from{
-        opacity:0;
-        transform:translateY(40px);
-    }
+    from{opacity:0;transform:translateY(40px);}
+    to{opacity:1;transform:translateY(0);}
 }
 
 .main-logo{
@@ -210,7 +200,7 @@ body{
     mask-image:linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0));
 }
 
-/* ================= SECTIONS ================= */
+/* ================= COMPANIES ================= */
 
 .companies{
     padding:120px 20px;
@@ -253,7 +243,6 @@ body{
 
 .card h3{
     font-size:18px;
-    color:white;
 }
 
 .gec-logo,
@@ -389,6 +378,7 @@ footer{
 <section class="companies">
 
 <div class="row">
+
 <a class="card"><div class="card-content">
 <h3>Byblos 4 Medicine</h3>
 <img src="gec.png" class="gec-logo">
@@ -406,12 +396,22 @@ footer{
 <img src="astoriahosp.png" class="astoria-logo">
 <div class="astoria-text">ASTORIA HOSPITALITY</div>
 </div></a>
+
+</div>
+
+<div class="row">
+
+<a class="card"><div class="card-content"><h3>Byblos 4 Media Prod</h3></div></a>
+<a class="card"><div class="card-content"><h3>Byblos 4 Advertising</h3></div></a>
+<a class="card"><div class="card-content"><h3>Byblos 4 Exhibitions</h3></div></a>
+<a class="card"><div class="card-content"><h3>Byblos 4 Event</h3></div></a>
+
 </div>
 
 </section>
 
 <footer>
-© 2026 BYBLOS GROUP — Ultra Premium Corporate Version
+© 2026 BYBLOS GROUP — Ultra Premium Corporate
 </footer>
 
 <script>
