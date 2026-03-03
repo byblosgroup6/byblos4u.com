@@ -5,439 +5,293 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BYBLOS GROUP</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-
-/* ================= ROOT ================= */
-:root{
-    --silver:#cfd3da;
-    --dark:#0f1116;
-    --glass:rgba(20,22,28,0.65);
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Montserrat',sans-serif;
 }
 
 body{
-    margin:0;
-    font-family:'Cinzel', serif;
-    background:var(--dark);
-    color:white;
-    overflow-x:hidden;
-    padding-top:90px;
+background:#000;
+color:white;
+overflow-x:hidden;
 }
 
-/* ================= NAVBAR ================= */
+/* ===== Premium Silver Lines Background ===== */
 
-.navbar{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:90px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:var(--glass);
-    backdrop-filter:blur(14px);
-    border-bottom:1px solid rgba(255,255,255,0.1);
-    z-index:1000;
-    transition:0.4s;
-}
-
-.navbar.scrolled{
-    height:65px;
-    background:rgba(15,17,22,0.95);
-}
-
-.nav-left{
-    position:absolute;
-    left:40px;
-}
-
-.nav-logo{
-    height:44px;
-}
-
-.menu-toggle{
-    display:none;
-    position:absolute;
-    right:30px;
-    font-size:28px;
-    cursor:pointer;
-}
-
-.nav-center{
-    display:flex;
-    gap:50px;
-    align-items:center;
-}
-
-.nav-center a,
-.dropdown span{
-    text-decoration:none;
-    color:var(--silver);
-    font-size:15px;
-    letter-spacing:1px;
-    position:relative;
-    cursor:pointer;
-}
-
-.nav-center a::after,
-.dropdown span::after{
-    content:"";
-    position:absolute;
-    left:0;
-    bottom:-8px;
-    width:0%;
-    height:2px;
-    background:linear-gradient(to right,transparent,var(--silver),transparent);
-    transition:0.3s;
-}
-
-.nav-center a:hover::after{
-    width:100%;
-}
-
-/* ================= DROPDOWN ================= */
-
-.dropdown{position:relative;}
-
-.dropdown-content{
-    position:absolute;
-    top:45px;
-    left:50%;
-    transform:translateX(-50%) translateY(10px);
-    background:#16181f;
-    border-radius:14px;
-    min-width:260px;
-    padding:12px 0;
-    opacity:0;
-    visibility:hidden;
-    pointer-events:none;
-    transition:0.3s;
-    box-shadow:0 15px 45px rgba(0,0,0,0.6);
-}
-
-.dropdown.open .dropdown-content{
-    opacity:1;
-    visibility:visible;
-    pointer-events:auto;
-    transform:translateX(-50%) translateY(5px);
-}
-
-.dropdown-content a{
-    display:block;
-    padding:12px 22px;
-    color:#ddd;
-    text-decoration:none;
-}
-
-.dropdown-content a:hover{
-    background:#1f222b;
-}
-
-/* ================= HERO ================= */
-
-.hero{
-    height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    position:relative;
-    overflow:hidden;
-}
-
-/* خطوط فضية */
-.hero::before{
-    content:"";
-    position:absolute;
-    width:140%;
-    height:140%;
-    background:
-    repeating-linear-gradient(
-        135deg,
-        rgba(255,255,255,0.08) 0px,
-        rgba(255,255,255,0.08) 1px,
-        transparent 1px,
-        transparent 40px
-    );
-    animation:moveLines 30s linear infinite;
+body::before{
+content:"";
+position:fixed;
+width:200%;
+height:200%;
+background:
+linear-gradient(120deg,rgba(192,192,192,0.06) 1px,transparent 1px),
+linear-gradient(60deg,rgba(192,192,192,0.04) 1px,transparent 1px);
+background-size:60px 60px;
+animation:moveLines 20s linear infinite;
+z-index:-1;
 }
 
 @keyframes moveLines{
-    from{transform:translateY(0);}
-    to{transform:translateY(-200px);}
+from{transform:translate(0,0);}
+to{transform:translate(-60px,-60px);}
 }
 
-/* الشعار */
-.logo-wrapper{
-    position:relative;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    animation:fadeUp 1.6s ease forwards;
-    opacity:0;
+/* ===== Premium Sticky Navbar ===== */
+
+.navbar{
+position:fixed;
+top:0;
+width:100%;
+height:90px;
+background:rgba(0,0,0,0.85);
+backdrop-filter:blur(12px);
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:999;
+border-bottom:1px solid silver;
+transition:all 0.4s ease;
 }
 
-@keyframes fadeUp{
-    from{opacity:0;transform:translateY(40px);}
-    to{opacity:1;transform:translateY(0);}
+.navbar.shrink{
+height:70px;
 }
 
-.main-logo{
-    width:560px;
-    max-width:92%;
-    filter:drop-shadow(0 0 35px rgba(255,255,255,0.25));
+.logo{
+position:absolute;
+left:30px;
 }
 
-.reflection{
-    width:560px;
-    height:140px;
-    max-width:92%;
-    background:url('logo2.png') no-repeat center;
-    background-size:contain;
-    transform:scaleY(-1);
-    opacity:0.15;
-    mask-image:linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0));
+.logo img{
+height:55px;
+transition:0.4s;
 }
 
-/* ================= COMPANIES ================= */
+.nav-links{
+display:flex;
+gap:50px;
+}
+
+.nav-links a{
+text-decoration:none;
+color:white;
+font-weight:400;
+position:relative;
+padding-bottom:5px;
+transition:0.3s;
+}
+
+.nav-links a:hover{
+color:silver;
+}
+
+.nav-links a::after{
+content:"";
+position:absolute;
+bottom:0;
+left:0;
+width:0;
+height:2px;
+background:silver;
+transition:0.4s;
+}
+
+.nav-links a:hover::after{
+width:100%;
+}
+
+/* ===== Hero ===== */
+
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+.hero h1{
+font-size:48px;
+letter-spacing:4px;
+margin-bottom:15px;
+}
+
+.hero p{
+font-size:18px;
+color:#ccc;
+}
+
+/* ===== Companies Section ===== */
 
 .companies{
-    padding:120px 20px;
+padding:120px 10% 80px;
 }
 
 .row{
-    display:flex;
-    justify-content:center;
-    gap:40px;
-    margin-bottom:40px;
-    flex-wrap:wrap;
+display:flex;
+justify-content:center;
+gap:40px;
+margin-bottom:40px;
+flex-wrap:wrap;
 }
 
 .card{
-    width:260px;
-    height:170px;
-    background:rgba(20,22,28,0.8);
-    border:1px solid rgba(255,255,255,0.08);
-    border-radius:18px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    transition:0.4s;
-    backdrop-filter:blur(10px);
+width:300px;
+height:260px;
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.1);
+backdrop-filter:blur(8px);
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+transition:0.4s;
+text-decoration:none;
+color:white;
 }
 
 .card:hover{
-    transform:translateY(-10px);
-    border-color:var(--silver);
-    box-shadow:0 0 35px rgba(255,255,255,0.15);
+transform:translateY(-10px);
+border:1px solid silver;
+box-shadow:0 0 25px rgba(192,192,192,0.4);
 }
 
-.card-content{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-    align-items:center;
+.card-content h3{
+margin-bottom:15px;
 }
 
-.card h3{
-    font-size:18px;
-}
-
+.astoria-logo,
 .gec-logo,
-.tfg-logo,
-.astoria-logo{
-    width:130px;
-    height:75px;
-    object-fit:contain;
+.tfg-logo{
+max-width:200px;
+margin-bottom:10px;
 }
 
+.astoria-text,
 .gec-text,
-.tfg-text,
-.astoria-text{
-    font-size:13px;
-    letter-spacing:2px;
-    color:var(--silver);
+.tfg-text{
+font-size:14px;
+letter-spacing:2px;
+color:silver;
 }
 
-/* ================= FOOTER ================= */
+/* ===== Footer ===== */
 
 footer{
-    text-align:center;
-    padding:40px;
-    border-top:1px solid rgba(255,255,255,0.1);
-    color:#aaa;
+text-align:center;
+padding:30px;
+border-top:1px solid silver;
+font-size:14px;
+color:#aaa;
 }
 
-/* ================= RESPONSIVE ================= */
+/* ===== Responsive ===== */
 
 @media(max-width:1024px){
-    .main-logo{width:420px;}
-    .reflection{width:420px;height:110px;}
+.hero h1{font-size:36px;}
 }
 
 @media(max-width:768px){
 
-    body{padding-top:70px;}
-
-    .navbar{
-        height:70px;
-        justify-content:flex-start;
-        padding:0 20px;
-    }
-
-    .nav-left{position:static;}
-
-    .menu-toggle{display:block;color:white;}
-
-    .nav-center{
-        position:fixed;
-        top:0;
-        right:-100%;
-        width:260px;
-        height:100vh;
-        background:#111318;
-        flex-direction:column;
-        align-items:flex-start;
-        padding:100px 25px;
-        gap:28px;
-        transition:0.4s;
-    }
-
-    .nav-center.active{right:0;}
-
-    .dropdown-content{
-        position:static;
-        transform:none;
-        background:#1a1c22;
-        margin-top:10px;
-    }
-
-    .hero{height:85vh;}
-
-    .main-logo{width:300px;}
-    .reflection{width:300px;height:80px;}
-
-    .row{
-        flex-direction:column;
-        align-items:center;
-    }
-
-    .card{
-        width:90%;
-        max-width:360px;
-    }
+.nav-links{
+gap:20px;
 }
 
+.hero h1{
+font-size:28px;
+}
+
+.card{
+width:100%;
+}
+
+}
 </style>
 </head>
 
 <body>
 
-<header class="navbar" id="navbar">
+<!-- ===== Navbar ===== -->
 
-<div class="nav-left">
-<a href="index.html">
-<img src="b.png" class="nav-logo">
-</a>
+<div class="navbar" id="navbar">
+
+<div class="logo">
+<img src="b.png">
 </div>
 
-<div class="menu-toggle" id="menuToggle">☰</div>
-
-<nav class="nav-center">
+<div class="nav-links">
 <a href="#">Home</a>
-<a href="#">About Us</a>
-
-<div class="dropdown">
-<span id="dropdownTrigger">Our Companies ▼</span>
-<div class="dropdown-content">
-<a href="#">Byblos 4 Medicine</a>
-<a href="#">Byblos 4 Real Estate</a>
-<a href="#">Byblos 4 Hospitality</a>
-<a href="#">Byblos 4 Media Prod</a>
-<a href="#">Byblos 4 Advertising</a>
-<a href="#">Byblos 4 Exhibitions</a>
-<a href="#">Byblos 4 Event</a>
-</div>
-</div>
-
-<a href="#">Locations</a>
+<a href="#">About</a>
+<a href="#">Companies</a>
 <a href="#">Contact</a>
-</nav>
+</div>
 
-</header>
+</div>
+
+<!-- ===== Hero ===== -->
 
 <section class="hero">
-<div class="logo-wrapper">
-<img src="logo2.png" class="main-logo">
-<div class="reflection"></div>
-</div>
+<h1>BYBLOS GROUP</h1>
+<p>Luxury. Vision. Excellence.</p>
 </section>
+
+<!-- ===== Companies ===== -->
 
 <section class="companies">
 
 <div class="row">
 
-<a class="card"><div class="card-content">
+<a class="card" href="https://germaneyecentre.com" target="_blank">
+<div class="card-content">
 <h3>Byblos 4 Medicine</h3>
 <img src="gec.png" class="gec-logo">
 <div class="gec-text">GERMAN EYE CENTRE</div>
-</div></a>
+</div>
+</a>
 
-<a class="card"><div class="card-content">
+<a class="card" href="#">
+<div class="card-content">
 <h3>Byblos 4 Real Estate</h3>
 <img src="tfg.png" class="tfg-logo">
 <div class="tfg-text">THE FIRST GROUP</div>
-</div></a>
+</div>
+</a>
 
-<a class="card"><div class="card-content">
+<a class="card" href="https://astoriahosp.com/" target="_blank">
+<div class="card-content">
 <h3>Byblos 4 Hospitality</h3>
 <img src="astoriahosp.png" class="astoria-logo">
 <div class="astoria-text">ASTORIA HOSPITALITY</div>
-</div></a>
+</div>
+</a>
 
 </div>
 
 <div class="row">
 
-<a class="card"><div class="card-content"><h3>Byblos 4 Media Prod</h3></div></a>
-<a class="card"><div class="card-content"><h3>Byblos 4 Advertising</h3></div></a>
-<a class="card"><div class="card-content"><h3>Byblos 4 Exhibitions</h3></div></a>
-<a class="card"><div class="card-content"><h3>Byblos 4 Event</h3></div></a>
+<a class="card" href="#"><div class="card-content"><h3>Byblos 4 Media Prod</h3></div></a>
+<a class="card" href="#"><div class="card-content"><h3>Byblos 4 Advertising</h3></div></a>
+<a class="card" href="#"><div class="card-content"><h3>Byblos 4 Exhibitions</h3></div></a>
+<a class="card" href="#"><div class="card-content"><h3>Byblos 4 Event</h3></div></a>
 
 </div>
 
 </section>
 
 <footer>
-© 2026 BYBLOS GROUP — Ultra Premium Corporate
+© 2026 BYBLOS GROUP — All Rights Reserved
 </footer>
 
 <script>
-
 window.addEventListener("scroll",function(){
-    const nav=document.getElementById("navbar");
-    if(window.scrollY>60){nav.classList.add("scrolled");}
-    else{nav.classList.remove("scrolled");}
+document.getElementById("navbar").classList.toggle("shrink",window.scrollY>50);
 });
-
-const dropdown=document.querySelector(".dropdown");
-const trigger=document.getElementById("dropdownTrigger");
-trigger.addEventListener("click",e=>{
-e.stopPropagation();
-dropdown.classList.toggle("open");
-});
-document.addEventListener("click",e=>{
-if(!dropdown.contains(e.target)){dropdown.classList.remove("open");}
-});
-
-const menuToggle=document.getElementById("menuToggle");
-const navCenter=document.querySelector(".nav-center");
-menuToggle.addEventListener("click",()=>{
-navCenter.classList.toggle("active");
-});
-
 </script>
 
 </body>
