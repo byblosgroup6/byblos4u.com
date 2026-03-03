@@ -49,6 +49,16 @@ body{
     height:42px;
 }
 
+/* mobile toggle */
+.menu-toggle{
+    display:none;
+    position:absolute;
+    right:25px;
+    font-size:28px;
+    cursor:pointer;
+    color:white;
+}
+
 /* ================= MENU ================= */
 .nav-center{
     display:flex;
@@ -83,8 +93,7 @@ body{
     width:100%;
 }
 
-/* ================= CLICK DROPDOWN ================= */
-
+/* ================= DROPDOWN ================= */
 .dropdown{
     position:relative;
 }
@@ -131,28 +140,31 @@ body{
     align-items:center;
     justify-content:center;
     background:radial-gradient(circle at center,#1a1c23 0%,#0f1116 70%);
-    position:relative;
 }
 
-.hero::before{
-    content:"";
-    position:absolute;
-    width:100%;
-    height:100%;
-    background:repeating-linear-gradient(
-        135deg,
-        rgba(255,255,255,0.14) 0px,
-        rgba(255,255,255,0.14) 2px,
-        transparent 2px,
-        transparent 30px
-    );
-    mask-image:linear-gradient(to bottom,rgba(0,0,0,1)0%,rgba(0,0,0,0)75%);
+.logo-wrapper{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
 }
 
-.logo img{
+.main-logo{
     width:520px;
     max-width:92%;
     filter:drop-shadow(0 0 25px rgba(255,255,255,0.35));
+}
+
+.reflection{
+    width:520px;
+    height:130px;
+    max-width:92%;
+    background:url('logo2.png') no-repeat center;
+    background-size:contain;
+    transform:scaleY(-1);
+    opacity:0.15;
+    mask-image:linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0));
+    -webkit-mask-image:linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0));
+    margin-top:-15px;
 }
 
 /* ================= CARDS ================= */
@@ -226,6 +238,66 @@ footer{
     margin-top:60px;
 }
 
+/* ================= RESPONSIVE ================= */
+@media (max-width:1024px){
+    .main-logo{width:420px;}
+    .reflection{width:420px;}
+}
+
+@media (max-width:768px){
+
+    body{padding-top:70px;}
+
+    .navbar{
+        height:70px;
+        justify-content:flex-start;
+        padding:0 20px;
+    }
+
+    .nav-left{position:static;}
+
+    .menu-toggle{display:block;}
+
+    .nav-center{
+        position:fixed;
+        top:0;
+        right:-100%;
+        width:260px;
+        height:100vh;
+        background:#111318;
+        flex-direction:column;
+        align-items:flex-start;
+        padding:100px 25px;
+        gap:28px;
+        transition:0.4s ease;
+        box-shadow:-10px 0 30px rgba(0,0,0,0.6);
+    }
+
+    .nav-center.active{right:0;}
+
+    .dropdown-content{
+        position:static;
+        transform:none;
+        background:#1a1c22;
+        margin-top:10px;
+    }
+
+    .hero{height:60vh;}
+
+    .main-logo{width:300px;}
+    .reflection{width:300px;height:90px;}
+
+    .row{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .card{
+        width:90%;
+        max-width:350px;
+    }
+}
+
 </style>
 </head>
 
@@ -235,9 +307,11 @@ footer{
 
 <div class="nav-left">
 <a href="index.html">
-<img src="logo2.png" class="nav-logo">
+<img src="b.png" class="nav-logo">
 </a>
 </div>
+
+<div class="menu-toggle" id="menuToggle">☰</div>
 
 <nav class="nav-center">
 <a href="index.html">Home</a>
@@ -263,8 +337,9 @@ footer{
 </header>
 
 <section class="hero">
-<div class="logo">
-<img src="logo2.png">
+<div class="logo-wrapper">
+<img src="logo2.png" class="main-logo">
+<div class="reflection"></div>
 </div>
 </section>
 
@@ -313,7 +388,6 @@ footer{
 
 <script>
 
-/* navbar shrink */
 window.addEventListener("scroll",function(){
     const nav=document.getElementById("navbar");
     if(window.scrollY>60){
@@ -323,7 +397,6 @@ window.addEventListener("scroll",function(){
     }
 });
 
-/* click dropdown */
 const dropdown = document.querySelector(".dropdown");
 const trigger = document.getElementById("dropdownTrigger");
 
@@ -336,6 +409,13 @@ document.addEventListener("click", function(e){
     if(!dropdown.contains(e.target)){
         dropdown.classList.remove("open");
     }
+});
+
+const menuToggle = document.getElementById("menuToggle");
+const navCenter = document.querySelector(".nav-center");
+
+menuToggle.addEventListener("click", function(){
+    navCenter.classList.toggle("active");
 });
 
 </script>
