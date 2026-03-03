@@ -9,18 +9,20 @@
 
 <style>
 
+/* ================= ROOT ================= */
 :root{
-    --white:#ffffff;
-    --dark:#0b0d12;
+    --silver:#cfd3da;
+    --dark:#0f1116;
+    --glass:rgba(20,22,28,0.65);
 }
 
 body{
     margin:0;
     font-family:'Cinzel', serif;
-    background:linear-gradient(to bottom,#0e1118,#0a0c12);
+    background:var(--dark);
     color:white;
     overflow-x:hidden;
-    padding-top:85px;
+    padding-top:90px;
 }
 
 /* ================= NAVBAR ================= */
@@ -30,93 +32,206 @@ body{
     top:0;
     left:0;
     width:100%;
-    height:85px;
+    height:90px;
     display:flex;
     align-items:center;
     justify-content:center;
-    background:rgba(15,17,25,0.85);
-    backdrop-filter:blur(12px);
-    border-bottom:1px solid rgba(255,255,255,0.08);
+    background:var(--glass);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(255,255,255,0.1);
     z-index:1000;
+    transition:0.4s;
+}
+
+.navbar.scrolled{
+    height:65px;
+    background:rgba(15,17,22,0.95);
+}
+
+.nav-left{
+    position:absolute;
+    left:40px;
 }
 
 .nav-logo{
-    height:42px;
+    height:44px;
+}
+
+.menu-toggle{
+    display:none;
+    position:absolute;
+    right:30px;
+    font-size:28px;
+    cursor:pointer;
 }
 
 .nav-center{
     display:flex;
-    gap:40px;
+    gap:50px;
     align-items:center;
 }
 
-.nav-center a{
+.nav-center a,
+.dropdown span{
     text-decoration:none;
-    color:white;
-    font-size:14px;
-    letter-spacing:2px;
+    color:var(--silver);
+    font-size:15px;
+    letter-spacing:1px;
+    position:relative;
+    cursor:pointer;
+}
+
+.nav-center a::after,
+.dropdown span::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-8px;
+    width:0%;
+    height:2px;
+    background:linear-gradient(to right,transparent,var(--silver),transparent);
+    transition:0.3s;
+}
+
+.nav-center a:hover::after{
+    width:100%;
+}
+
+/* ================= DROPDOWN ================= */
+
+.dropdown{position:relative;}
+
+.dropdown-content{
+    position:absolute;
+    top:45px;
+    left:50%;
+    transform:translateX(-50%) translateY(10px);
+    background:#16181f;
+    border-radius:14px;
+    min-width:260px;
+    padding:12px 0;
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transition:0.3s;
+    box-shadow:0 15px 45px rgba(0,0,0,0.6);
+}
+
+.dropdown.open .dropdown-content{
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+    transform:translateX(-50%) translateY(5px);
+}
+
+.dropdown-content a{
+    display:block;
+    padding:12px 22px;
+    color:#ddd;
+    text-decoration:none;
+}
+
+.dropdown-content a:hover{
+    background:#1f222b;
 }
 
 /* ================= HERO ================= */
 
 .hero{
-    height:80vh; /* اقصر من النسخة السابقة */
+    height:100vh;
     display:flex;
     align-items:center;
     justify-content:center;
     position:relative;
+    overflow:hidden;
 }
 
-/* خطوط فضية خفيفة فقط بدون وميض */
+/* خطوط فضية */
 .hero::before{
     content:"";
     position:absolute;
-    width:200%;
-    height:200%;
+    width:140%;
+    height:140%;
     background:
     repeating-linear-gradient(
         135deg,
-        rgba(255,255,255,0.04) 0px,
-        rgba(255,255,255,0.04) 1px,
+        rgba(255,255,255,0.08) 0px,
+        rgba(255,255,255,0.08) 1px,
         transparent 1px,
-        transparent 70px
+        transparent 40px
     );
+    animation:moveLines 30s linear infinite;
+}
+
+@keyframes moveLines{
+    from{transform:translateY(0);}
+    to{transform:translateY(-200px);}
+}
+
+/* الشعار */
+.logo-wrapper{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    animation:fadeUp 1.6s ease forwards;
+    opacity:0;
+}
+
+@keyframes fadeUp{
+    from{opacity:0;transform:translateY(40px);}
+    to{opacity:1;transform:translateY(0);}
 }
 
 .main-logo{
-    width:520px;
-    max-width:90%;
+    width:560px;
+    max-width:92%;
+    filter:drop-shadow(0 0 35px rgba(255,255,255,0.25));
+}
+
+.reflection{
+    width:560px;
+    height:140px;
+    max-width:92%;
+    background:url('logo2.png') no-repeat center;
+    background-size:contain;
+    transform:scaleY(-1);
+    opacity:0.15;
+    mask-image:linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0));
 }
 
 /* ================= COMPANIES ================= */
 
 .companies{
-    padding:70px 20px; /* رجعناها اقصر */
+    padding:120px 20px;
 }
 
 .row{
     display:flex;
     justify-content:center;
-    gap:35px;
+    gap:40px;
     margin-bottom:40px;
     flex-wrap:wrap;
 }
 
 .card{
-    width:250px;
+    width:260px;
     height:170px;
-    background:rgba(25,27,35,0.75);
+    background:rgba(20,22,28,0.8);
     border:1px solid rgba(255,255,255,0.08);
     border-radius:18px;
     display:flex;
     align-items:center;
     justify-content:center;
     text-align:center;
-    transition:0.3s;
+    transition:0.4s;
+    backdrop-filter:blur(10px);
 }
 
 .card:hover{
-    transform:translateY(-6px);
+    transform:translateY(-10px);
+    border-color:var(--silver);
+    box-shadow:0 0 35px rgba(255,255,255,0.15);
 }
 
 .card-content{
@@ -127,43 +242,92 @@ body{
 }
 
 .card h3{
-    font-size:16px;
-    letter-spacing:2px;
-    color:white;
+    font-size:18px;
 }
 
-.card a{
-    color:white;
-    text-decoration:none;
-}
-
-/* logos */
 .gec-logo,
 .tfg-logo,
 .astoria-logo{
     width:130px;
-    height:70px;
+    height:75px;
     object-fit:contain;
+}
+
+.gec-text,
+.tfg-text,
+.astoria-text{
+    font-size:13px;
+    letter-spacing:2px;
+    color:var(--silver);
 }
 
 /* ================= FOOTER ================= */
 
 footer{
     text-align:center;
-    padding:35px;
-    border-top:1px solid rgba(255,255,255,0.08);
+    padding:40px;
+    border-top:1px solid rgba(255,255,255,0.1);
     color:#aaa;
-    letter-spacing:2px;
 }
 
 /* ================= RESPONSIVE ================= */
 
+@media(max-width:1024px){
+    .main-logo{width:420px;}
+    .reflection{width:420px;height:110px;}
+}
+
 @media(max-width:768px){
+
     body{padding-top:70px;}
-    .navbar{height:70px;}
-    .main-logo{width:280px;}
-    .row{flex-direction:column;align-items:center;}
-    .card{width:90%;max-width:330px;}
+
+    .navbar{
+        height:70px;
+        justify-content:flex-start;
+        padding:0 20px;
+    }
+
+    .nav-left{position:static;}
+
+    .menu-toggle{display:block;color:white;}
+
+    .nav-center{
+        position:fixed;
+        top:0;
+        right:-100%;
+        width:260px;
+        height:100vh;
+        background:#111318;
+        flex-direction:column;
+        align-items:flex-start;
+        padding:100px 25px;
+        gap:28px;
+        transition:0.4s;
+    }
+
+    .nav-center.active{right:0;}
+
+    .dropdown-content{
+        position:static;
+        transform:none;
+        background:#1a1c22;
+        margin-top:10px;
+    }
+
+    .hero{height:85vh;}
+
+    .main-logo{width:300px;}
+    .reflection{width:300px;height:80px;}
+
+    .row{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .card{
+        width:90%;
+        max-width:360px;
+    }
 }
 
 </style>
@@ -171,62 +335,110 @@ footer{
 
 <body>
 
-<header class="navbar">
-<div>
+<header class="navbar" id="navbar">
+
+<div class="nav-left">
+<a href="index.html">
 <img src="b.png" class="nav-logo">
+</a>
 </div>
+
+<div class="menu-toggle" id="menuToggle">☰</div>
+
 <nav class="nav-center">
 <a href="#">Home</a>
 <a href="#">About Us</a>
-<a href="#">Our Companies</a>
+
+<div class="dropdown">
+<span id="dropdownTrigger">Our Companies ▼</span>
+<div class="dropdown-content">
+<a href="#">Byblos 4 Medicine</a>
+<a href="#">Byblos 4 Real Estate</a>
+<a href="#">Byblos 4 Hospitality</a>
+<a href="#">Byblos 4 Media Prod</a>
+<a href="#">Byblos 4 Advertising</a>
+<a href="#">Byblos 4 Exhibitions</a>
+<a href="#">Byblos 4 Event</a>
+</div>
+</div>
+
 <a href="#">Locations</a>
 <a href="#">Contact</a>
 </nav>
+
 </header>
 
 <section class="hero">
+<div class="logo-wrapper">
 <img src="logo2.png" class="main-logo">
+<div class="reflection"></div>
+</div>
 </section>
 
 <section class="companies">
 
 <div class="row">
 
-<a class="card" href="https://germaneyecentre.com" target="_blank">
-<div class="card-content">
+<a class="card"><div class="card-content">
 <h3>Byblos 4 Medicine</h3>
 <img src="gec.png" class="gec-logo">
-</div>
-</a>
+<div class="gec-text">GERMAN EYE CENTRE</div>
+</div></a>
 
-<a class="card">
-<div class="card-content">
+<a class="card"><div class="card-content">
 <h3>Byblos 4 Real Estate</h3>
 <img src="tfg.png" class="tfg-logo">
-</div>
-</a>
+<div class="tfg-text">THE FIRST GROUP</div>
+</div></a>
 
-<a class="card" href="https://astoriahosp.com/" target="_blank">
-<div class="card-content">
+<a class="card"><div class="card-content">
 <h3>Byblos 4 Hospitality</h3>
 <img src="astoriahosp.png" class="astoria-logo">
-</div>
-</a>
+<div class="astoria-text">ASTORIA HOSPITALITY</div>
+</div></a>
 
 </div>
 
 <div class="row">
-<a class="card"><div class="card-content"><h3>Byblos 4 Media Production</h3></div></a>
+
+<a class="card"><div class="card-content"><h3>Byblos 4 Media Prod</h3></div></a>
 <a class="card"><div class="card-content"><h3>Byblos 4 Advertising</h3></div></a>
 <a class="card"><div class="card-content"><h3>Byblos 4 Exhibitions</h3></div></a>
-<a class="card"><div class="card-content"><h3>Byblos 4 Events</h3></div></a>
+<a class="card"><div class="card-content"><h3>Byblos 4 Event</h3></div></a>
+
 </div>
 
 </section>
 
 <footer>
-© 2026 BYBLOS GROUP
+© 2026 BYBLOS GROUP — Ultra Premium Corporate
 </footer>
+
+<script>
+
+window.addEventListener("scroll",function(){
+    const nav=document.getElementById("navbar");
+    if(window.scrollY>60){nav.classList.add("scrolled");}
+    else{nav.classList.remove("scrolled");}
+});
+
+const dropdown=document.querySelector(".dropdown");
+const trigger=document.getElementById("dropdownTrigger");
+trigger.addEventListener("click",e=>{
+e.stopPropagation();
+dropdown.classList.toggle("open");
+});
+document.addEventListener("click",e=>{
+if(!dropdown.contains(e.target)){dropdown.classList.remove("open");}
+});
+
+const menuToggle=document.getElementById("menuToggle");
+const navCenter=document.querySelector(".nav-center");
+menuToggle.addEventListener("click",()=>{
+navCenter.classList.toggle("active");
+});
+
+</script>
 
 </body>
 </html>
