@@ -9,21 +9,18 @@
 
 <style>
 
-/* ================= ROOT ================= */
 :root{
-    --silver:#e5e8ee;
+    --white:#ffffff;
     --dark:#0b0d12;
-    --glass:rgba(20,22,30,0.55);
 }
 
 body{
     margin:0;
     font-family:'Cinzel', serif;
-    background:
-    radial-gradient(circle at 50% 20%, #1a1c25 0%, #0b0d12 60%);
+    background:linear-gradient(to bottom,#0e1118,#0a0c12);
     color:white;
     overflow-x:hidden;
-    padding-top:90px;
+    padding-top:85px;
 }
 
 /* ================= NAVBAR ================= */
@@ -33,76 +30,44 @@ body{
     top:0;
     left:0;
     width:100%;
-    height:90px;
+    height:85px;
     display:flex;
     align-items:center;
     justify-content:center;
-    background:rgba(15,17,25,0.65);
-    backdrop-filter:blur(18px);
+    background:rgba(15,17,25,0.85);
+    backdrop-filter:blur(12px);
     border-bottom:1px solid rgba(255,255,255,0.08);
     z-index:1000;
-    transition:0.4s;
-}
-
-.navbar.scrolled{
-    height:65px;
-    background:rgba(10,12,18,0.95);
 }
 
 .nav-logo{
-    height:44px;
-    filter:drop-shadow(0 0 12px rgba(255,255,255,0.25));
-    transition:0.4s;
+    height:42px;
 }
 
 .nav-center{
     display:flex;
-    gap:50px;
+    gap:40px;
     align-items:center;
 }
 
-.nav-center a,
-.dropdown span{
+.nav-center a{
     text-decoration:none;
-    color:var(--silver);
-    font-size:15px;
+    color:white;
+    font-size:14px;
     letter-spacing:2px;
-    position:relative;
-    cursor:pointer;
-    transition:0.3s;
-}
-
-.nav-center a:hover{
-    text-shadow:0 0 12px rgba(255,255,255,0.4);
-}
-
-.nav-center a::after{
-    content:"";
-    position:absolute;
-    left:0;
-    bottom:-8px;
-    width:0%;
-    height:2px;
-    background:linear-gradient(to right,transparent,var(--silver),transparent);
-    transition:0.4s;
-}
-
-.nav-center a:hover::after{
-    width:100%;
 }
 
 /* ================= HERO ================= */
 
 .hero{
-    height:100vh;
+    height:80vh; /* اقصر من النسخة السابقة */
     display:flex;
     align-items:center;
     justify-content:center;
     position:relative;
-    overflow:hidden;
 }
 
-/* خطوط فضية فاخرة جداً */
+/* خطوط فضية خفيفة فقط بدون وميض */
 .hero::before{
     content:"";
     position:absolute;
@@ -111,141 +76,83 @@ body{
     background:
     repeating-linear-gradient(
         135deg,
-        rgba(255,255,255,0.05) 0px,
-        rgba(255,255,255,0.05) 1px,
+        rgba(255,255,255,0.04) 0px,
+        rgba(255,255,255,0.04) 1px,
         transparent 1px,
-        transparent 60px
+        transparent 70px
     );
-    animation:moveLines 40s linear infinite;
-}
-
-@keyframes moveLines{
-    from{transform:translateY(0);}
-    to{transform:translateY(-250px);}
-}
-
-/* الشعار */
-
-.logo-wrapper{
-    position:relative;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    animation:fadeUp 2s ease forwards;
-    opacity:0;
-}
-
-@keyframes fadeUp{
-    from{opacity:0;transform:translateY(60px);}
-    to{opacity:1;transform:translateY(0);}
 }
 
 .main-logo{
-    width:580px;
-    max-width:92%;
-    filter:
-    drop-shadow(0 0 40px rgba(255,255,255,0.25))
-    drop-shadow(0 0 80px rgba(255,255,255,0.15));
-}
-
-.reflection{
-    width:580px;
-    height:150px;
-    max-width:92%;
-    background:url('logo2.png') no-repeat center;
-    background-size:contain;
-    transform:scaleY(-1);
-    opacity:0.12;
-    mask-image:linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0));
+    width:520px;
+    max-width:90%;
 }
 
 /* ================= COMPANIES ================= */
 
 .companies{
-    padding:140px 20px;
+    padding:70px 20px; /* رجعناها اقصر */
 }
 
 .row{
     display:flex;
     justify-content:center;
-    gap:50px;
-    margin-bottom:60px;
+    gap:35px;
+    margin-bottom:40px;
     flex-wrap:wrap;
 }
 
 .card{
-    width:280px;
-    height:190px;
+    width:250px;
+    height:170px;
     background:rgba(25,27,35,0.75);
     border:1px solid rgba(255,255,255,0.08);
-    border-radius:22px;
+    border-radius:18px;
     display:flex;
     align-items:center;
     justify-content:center;
     text-align:center;
-    transition:0.5s;
-    backdrop-filter:blur(18px);
-    position:relative;
-    overflow:hidden;
-}
-
-.card::before{
-    content:"";
-    position:absolute;
-    width:200%;
-    height:200%;
-    background:radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 60%);
-    top:-50%;
-    left:-50%;
-    transition:0.6s;
-    opacity:0;
-}
-
-.card:hover::before{
-    opacity:1;
+    transition:0.3s;
 }
 
 .card:hover{
-    transform:translateY(-15px) scale(1.02);
-    border-color:var(--silver);
-    box-shadow:0 0 60px rgba(255,255,255,0.15);
+    transform:translateY(-6px);
 }
 
 .card-content{
     display:flex;
     flex-direction:column;
-    gap:12px;
+    gap:10px;
     align-items:center;
 }
 
 .card h3{
-    font-size:19px;
+    font-size:16px;
     letter-spacing:2px;
+    color:white;
 }
 
+.card a{
+    color:white;
+    text-decoration:none;
+}
+
+/* logos */
 .gec-logo,
 .tfg-logo,
 .astoria-logo{
-    width:140px;
-    height:80px;
+    width:130px;
+    height:70px;
     object-fit:contain;
-}
-
-.gec-text,
-.tfg-text,
-.astoria-text{
-    font-size:13px;
-    letter-spacing:3px;
-    color:var(--silver);
 }
 
 /* ================= FOOTER ================= */
 
 footer{
     text-align:center;
-    padding:50px;
+    padding:35px;
     border-top:1px solid rgba(255,255,255,0.08);
-    color:#888;
+    color:#aaa;
     letter-spacing:2px;
 }
 
@@ -254,10 +161,9 @@ footer{
 @media(max-width:768px){
     body{padding-top:70px;}
     .navbar{height:70px;}
-    .main-logo{width:300px;}
-    .reflection{width:300px;height:80px;}
+    .main-logo{width:280px;}
     .row{flex-direction:column;align-items:center;}
-    .card{width:90%;max-width:360px;}
+    .card{width:90%;max-width:330px;}
 }
 
 </style>
@@ -265,11 +171,9 @@ footer{
 
 <body>
 
-<header class="navbar" id="navbar">
-<div class="nav-left">
-<a href="index.html">
+<header class="navbar">
+<div>
 <img src="b.png" class="nav-logo">
-</a>
 </div>
 <nav class="nav-center">
 <a href="#">Home</a>
@@ -281,10 +185,7 @@ footer{
 </header>
 
 <section class="hero">
-<div class="logo-wrapper">
 <img src="logo2.png" class="main-logo">
-<div class="reflection"></div>
-</div>
 </section>
 
 <section class="companies">
@@ -295,7 +196,6 @@ footer{
 <div class="card-content">
 <h3>Byblos 4 Medicine</h3>
 <img src="gec.png" class="gec-logo">
-<div class="gec-text">GERMAN EYE CENTRE</div>
 </div>
 </a>
 
@@ -303,7 +203,6 @@ footer{
 <div class="card-content">
 <h3>Byblos 4 Real Estate</h3>
 <img src="tfg.png" class="tfg-logo">
-<div class="tfg-text">THE FIRST GROUP</div>
 </div>
 </a>
 
@@ -311,32 +210,23 @@ footer{
 <div class="card-content">
 <h3>Byblos 4 Hospitality</h3>
 <img src="astoriahosp.png" class="astoria-logo">
-<div class="astoria-text">ASTORIA HOSPITALITY</div>
 </div>
 </a>
 
 </div>
 
 <div class="row">
-<a class="card"><div class="card-content"><h3>Byblos 4 Media Prod</h3></div></a>
+<a class="card"><div class="card-content"><h3>Byblos 4 Media Production</h3></div></a>
 <a class="card"><div class="card-content"><h3>Byblos 4 Advertising</h3></div></a>
 <a class="card"><div class="card-content"><h3>Byblos 4 Exhibitions</h3></div></a>
-<a class="card"><div class="card-content"><h3>Byblos 4 Event</h3></div></a>
+<a class="card"><div class="card-content"><h3>Byblos 4 Events</h3></div></a>
 </div>
 
 </section>
 
 <footer>
-© 2026 BYBLOS GROUP — Ultra Luxury Corporate
+© 2026 BYBLOS GROUP
 </footer>
-
-<script>
-window.addEventListener("scroll",function(){
-const nav=document.getElementById("navbar");
-if(window.scrollY>60){nav.classList.add("scrolled");}
-else{nav.classList.remove("scrolled");}
-});
-</script>
 
 </body>
 </html>
